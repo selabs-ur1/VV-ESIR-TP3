@@ -26,3 +26,32 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. Input space partitioning
+The input domain of a system under test is the set of all possible values that the input parameters
+can take.
+
+```java
+public static boolean isBalanced(String str) {
+    ...
+}
+```
+
+The input domain is the set of all possible string made of the Alphabet `[ { ( ) } ]`
+integer elements, including empty string. Possible test inputs may include: { `string: ""`}, { `string: "[({][}})"`} or { `string: "{)[()[{}]"` }.
+
+Interface based modeling considers each parameter separately and takes information only from
+their specific domain. It is a simple alternative that makes it easier to identify the characteristics.
+
+|Characteristics|Blocks|
+|---------------|---------|
+|               |   B1 -  B2  |
+|String is null |True - False|
+|String is empty|True - False|
+|String is Even |True - False|
+|the substrings before is balanced |True - False|
+|the substring after is balanced |True - False|
+|the substring between is balanced |True - False|
+
+The following set of inputs achieve ECC coverage. 
+
+
