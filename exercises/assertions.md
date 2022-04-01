@@ -12,11 +12,82 @@ Answer the following questions:
 
 ## Answer
 
-### Assertions
+1. We are trying to compare the values of two doubles, and we know that there are a number of comma values that are not representable for a computer, given the result of the test this is surely the case for the number 1,2. 
 
-1. We are trying to compare the values of two doubles, and we know that there are a number of comma values that are not representable for a computer, given the result of the test this is surely the case for the number 1,2. To be able to compare these two values, we need to introduce a tolerance to this approximation. By calculation this difference is : 2.220446049250313E-16
+To be able to compare these two values, we need to introduce a tolerance to this approximation. By calculation this difference is : 2.220446049250313E-16
 
 To resolve this bug the test should be writen like this :
 ```java
 assertEquals(3 * 0.4, 1.2, 10E-16);
 ```
+
+---
+
+2. Difference between assertSame() & assertEquals()
+
+- assertSame() checks the object reference using the == operator.
+
+- assertEquals()
+  - If primitive values are passed and then the values are compared.
+  - If objects are passed, then the equals() method is invoked. 
+
+Scenarios :
+```java
+    BigDecimal d1 = new BigDecimal("1.0");
+    BigDecimal d2 = new BigDecimal("1.0");
+    BigDecimal d3 = d1;
+```
+- Same Results
+
+```java
+@Test
+    public void SameResult() {
+        assertSame(d1,d3);
+        assertEquals(d1,d3);
+    }
+```
+
+- Different Results
+
+```java
+@Test
+    public void DiffResult() {
+        assertEquals(d1,d2);
+        assertNotSame(d1,d2);        
+    }
+```
+---
+
+3. fail() uses
+We can call fail() when a result doesn't meet some desired condition:
+```java
+@Test
+public void testingCondition() {
+    int result = randomInteger();
+    if(result > Integer.MAX_VALUE) {
+        fail("Result cannot exceed integer max value");
+    }
+}
+```
+
+We can also fail a test when the code doesn't return/break when expected:
+```java
+@Test
+public void returnBefore() {
+    int value = randomInteger();
+    for (int i = 0; i < 5; i++) {
+        // returns when (value + i) is an even number
+        if ((i + value) % 2 == 0) {
+            return;
+        }
+    }
+    fail("Should have returned before");
+}
+```
+
+---
+
+4. Exceptions for JUnit4 & JUnit5
+
+- JUnit 4 uses @Test(expected = InterruptedException.class).
+- JUnit 5 uses an assertion with the code in a closure lambda expression, which allows additional assertions to be made on the exception.
