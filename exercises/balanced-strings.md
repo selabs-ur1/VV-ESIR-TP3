@@ -45,13 +45,22 @@ their specific domain. It is a simple alternative that makes it easier to identi
 |Characteristics|Blocks|
 |---------------|---------|
 |               |   B1 -  B2  |
-|String is null |True - False|
-|String is empty|True - False|
-|String is Even |True - False|
-|the substrings before is balanced |True - False|
-|the substring after is balanced |True - False|
-|the substring between is balanced |True - False|
+|q1. String is null |True - False|
+|q2. String is empty|True - False|
+|q3. String is Even |True - False|
+|q4. the substrings before is balanced |True - False|
+|q5. the substring after is balanced |True - False|
+|q6. the substring between is balanced |True - False|
 
-The following set of inputs achieve ECC coverage. 
+The following set of inputs tries to achieve ECC coverage. 
+
+|Input|Blocks|
+|---------------|---------|
+| {string : null } | Q1B1 - Q2B? - Q3B? - Q4B? -Q5B? - Q6B?|
+| {string : ""   } | Q1B2 - Q2B1 - Q3B1|
+| {string : "[] **(])**"   } | Q1B2 - Q2B2 - Q3B2 - Q4|
+| {string : ""   } | 
+| {string : ""   } | 
+| {string : ""   } | 
 
 
