@@ -53,3 +53,10 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+1. At first, we know that the input domain is all the combination of 3 ints so we will cut this with different blocks of int triplet. 
+We started by the interface-based approach and we could write test cases with null inputs but eclipse IDE doesn't allow calling methods with null inputs. 
+So we choose to put some zero into inputs. We test the date ( 0,0,0) with the method isValidDate() and it returns true instead of false. In fact we used a <0 instead of a <=0 in the first if statement. We decided to throw an exception if a wrong date is trying to be created. So we write a test case to verify if this exception is throwed. 
+	We also write some tests with the functionality based technique. We test each method by changing only the day, the month or the year. We also test them with complex dates like 31th december or 29th february during a leap year. 
+2. Then we evaluate the test coverage with the coverage plugin of Eclipse and we reach a 87% coverage rate. So we have checked which lines or branches were not reached. We add tests to create complex dates like 29th february, 30th and 31th during leap year and normal year. We have managed to reach 98,1% of coverage. 
+3. We have many predicate with 2 booleans operator by there are already tested with the test cases added previously
+4. We now run PIT on our project and we reach 90% of mutation coverage. It stills 10 mutants alive. At this time, we add test cases to kill the mutant from compareTo. In fact, we test with post and anterior year, month and day. But we still have some alive mutants with the isValidDate method. 
