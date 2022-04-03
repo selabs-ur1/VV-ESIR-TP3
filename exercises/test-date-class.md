@@ -53,3 +53,36 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+1. *Input Space Partitioning*
+
+Here is the insput space partitionning we have done for the method isValidDate().
+
+
+|Characteristics|Blocks|
+|---------------|---------|
+|               |   `B1` -  `B2`  -  `B3`  -  `B4`  -  `B5`  -  `B6` |
+|`q1`. Value of year |<0 - 0 - valid leap year - valid common year - none - none |
+|`q2`. Value of month|<0 - 0 - {1, 3, 5, 7, 8, 10, 12} - {4, 6, 9, 11} - 2 - >12 |
+|`q3`. Value of day  |<0 - 0 - >=1 and <=max(month,year) - >max(month,year) - none - none |
+
+
+The following set of inputs `tries` to achieve ECC coverage. 
+
+|Input|Blocks|
+|---------------|---------|
+| { day: 1, month: 1, year: -1} | Q1B1 - Q2B3 - Q3B3|
+| { day: -1, month: -1, year: 0} | Q1B2 - Q2B1 - Q3B1|
+| { day: 0, month: 4, year: 2020} | Q1B3 - Q2B4 - Q3B2|
+| { day: -2, month: 0, year: 2019}  | Q1B4 - Q2B2 - Q3B1|
+| { day: 29, month: 2, year: 2019} | Q1B3 - Q2B5 - Q3B4|
+| { day: 0, month: 13, year: 2018} | Q1B4 - Q2B6 - Q3B2|
+
+2. Statement Coverage.
+
+At first we had a pretty low coverage because our code id done in a way that id some characteristic is detected wrong it'll return false before mesuring the others.
+
+To make out test coverage better we added some tests trying to go to the statements wich have not be used yes by the test suite.And as wanted we descovered a bug in our implementation and added a test to make sure it'll not appear again.
+
+3.We have separated in the code each boolean statement so we always evaluate them one by one.
+
+4. >TODO
