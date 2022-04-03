@@ -26,6 +26,8 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+> We did not used the template to do this exercise, we only did it on paper.
+
 1. Input space partitioning
 The input domain of a system under test is the set of all possible values that the input parameters
 can take.
@@ -102,7 +104,7 @@ The following set of inputs `tries` to achieve ECC coverage.
 
 In this step we simulated the execution of our method according to the different tests we are going to run on it and reported which lines are executed and which are not. We noticed that at no point in our test set did we have a read check of `)` with an element at the top of the `(` stack. 
 
-We therefore have a Statement coverage value of `22/23`.
+We therefore have a Statement coverage value of `22/23` statements.
 
 To do this we add this test:
 
