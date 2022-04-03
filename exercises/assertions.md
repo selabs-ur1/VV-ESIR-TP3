@@ -12,6 +12,30 @@ Answer the following questions:
 
 ## Answer
 
+---
+**Student**  
+<table align="left">
+<tr>
+  <th> First Name </th>
+  <th> Last Name </th>
+  <th> @Mail adress </th>
+</tr>
+<tr>
+  <td> Léo </td>
+  <td> Thuillier </td>
+  <td> leo.thuillier@etudiant.univ-rennes1.fr </td>
+</tr>
+<tr>
+  <td> Thibaut </td>
+  <td> Le Marre </td>
+  <td> thibaut.le-marre@etudiant.univ-rennes1.fr </td>
+</tr>
+</table>
+<br><br><br><br><br><br>
+
+---
+
+
 1. We are trying to compare the values of two doubles, and we know that there are a number of comma values that are not representable for a computer, given the result of the test this is surely the case for the number 1,2. 
 
 To be able to compare these two values, we need to introduce a tolerance to this approximation. By calculation this difference is : 2.220446049250313E-16
