@@ -15,3 +15,8 @@ Include the improved test code in this file.
 
 ## Answer
 
+We tried pmd with the detachedTestCase test smell. It is smelling if the a part of the program is looking like to a test cas missing @test or @ignore.
+
+
+Message PMD:
+```The method appears to be a test case since it has public or default visibility, non-static access, no arguments, no return value, has no annotations, but is a member of a class that has one or more JUnit test cases. If it is a utility method, it should likely have private visibility. If it is an ignored test, it should be annotated with @Test and @Ignore.```

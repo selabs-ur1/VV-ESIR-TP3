@@ -1,6 +1,6 @@
 # Balanced strings
 
-A string containing grouping symbols `{}[]()` is said to be balanced if every open symbol `{[(` has a matching closed symbol `]}` and the substrings before, after and between each pair of symbols is also balanced. The empty string is considered as balanced.
+A string containing grouping symbols `{}[]()` is said to be balanced if every open symbol `{[(` has a matching closed symbol `)]}` and the substrings before, after and between each pair of symbols is also balanced. The empty string is considered as balanced.
 
 For example: `{[][]}({})` is balanced, while `][`, `([)]`, `{`, `{(}{}` are not.
 
@@ -26,3 +26,17 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. 
+For this part of the exercise we took inspiration on the textbook to create a table with the characteristics and its blocks : 
+
+| Characteristic  | Blocks |
+| :--------------- |:---------------:|:-----:|
+| value of str  | null       |  “” | “[a-z][A-Z][0-9]” | “[a-z][A-Z][0-9][()-[]-{}]” | “[a-z][A-Z][0-9])|}|]” |
+
+Our only input is a String, we first made an approach with interface based modeling with the potential values null, empty or with text and then we thought about the functionality based modeling on the function. And we are concentrated on the grouping symbols. So a string can be without any grouping symbols and with balanced or unbalanced grouping symbols.
+
+2. When we evaluated the statement coverage at first we got 86,2%. So decided to add more tests to cover better some parts of the code because the tests weren't going through one of the branches for the '{' and also for the '['. And the test strOpeningSymbols was red because it as returning true instead of false. So we first modified our function isBalanced to correct the fault about the opening symbols, we change the return in the end to verify if our stack is empty in the end or not. Then, we changed our tests to make them cover the entire code and to lead to a 100% coverage. 
+
+3. We also verified the *Base Choice Coverage* but we didn't need to add any new case because the predicate with multiple booleans was tested in diferent tests already.
+
+4. Finally we used PIT to evaluate the test suite. Our mutation score is equal to 100% because all of the mutants were killed in the end. So we didn't need to add more test cases.

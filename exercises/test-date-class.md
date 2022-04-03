@@ -53,3 +53,12 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+1. ![image](C:/Users/ilona/Downloads/ispex4.jpg)
+Here we can see the *Input Space Partitioning* for our class. 
+
+2. We evaluated the statement coverage after correcting the test which were failing and we got 88,4%. And we decided it was enough because it would be too heavy to create tests to try all the possibilities of dates for example.
+
+
+3. We have some predicates with multiple boolean operators so we should test all the type of month so, we tried to change the months we were testing among the test suite but again it would be so essential to test them all.
+
+4. We achieved to have a mutation coverage equals to 91% so we can say that the proportion of mutants killed towards the ones who are still alive is really good. Indeed with this result we can say that our code is well tested.
