@@ -31,9 +31,40 @@ The input domain of a system under test is the set of all possible values that t
 can take.
 
 ```java
-public static boolean isBalanced(String str) {
-    ...
-}
+public static boolean isBalanced(String str)
+    {
+        if(str == null){
+            return false;
+        }
+        
+        Stack<Character> st = new Stack<Character>();
+
+        for(char chr : str.toCharArray())
+        {
+            switch(chr) {
+
+                case '{':
+                case '(':
+                case '[':
+                    st.push(chr);
+                    break;
+
+                case ']':
+                    if(st.isEmpty() || st.pop() != '[') 
+                        return false;
+                    break;
+                case ')':
+                    if(st.isEmpty() || st.pop() != '(')
+                        return false;
+                    break;
+                case '}':
+                    if(st.isEmpty() || st.pop() != '{')
+                        return false;
+                    break;
+            }
+        }
+        return st.isEmpty();
+    }
 ```
 
 The input domain is the set of all possible string made of the Alphabet `[ { ( ) } ]`
@@ -44,23 +75,56 @@ their specific domain. It is a simple alternative that makes it easier to identi
 
 |Characteristics|Blocks|
 |---------------|---------|
-|               |   B1 -  B2  |
-|q1. String is null |True - False|
-|q2. String is empty|True - False|
-|q3. String is Even |True - False|
-|q4. the substrings before is balanced |True - False|
-|q5. the substring after is balanced |True - False|
-|q6. the substring between is balanced |True - False|
+|               |   `B1` -  `B2`  |
+|`q1`. String is null |True - False|
+|`q2`. String is empty|True - False|
+|`q3`. String is Even |True - False|
+|`q4`. the substrings before is balanced |True - False|
+|`q5`. the substring after is balanced |True - False|
+|`q6`. the substring between is balanced |True - False|
 
-The following set of inputs tries to achieve ECC coverage. 
+The following set of inputs `tries` to achieve ECC coverage. 
 
-|Input|Blocks|
-|---------------|---------|
-| {string : null } | Q1B1 - Q2B? - Q3B? - Q4B? -Q5B? - Q6B?|
-| {string : ""   } | Q1B2 - Q2B1 - Q3B1|
-| {string : "[] **(])**"   } | Q1B2 - Q2B2 - Q3B2 - Q4|
-| {string : ""   } | 
-| {string : ""   } | 
-| {string : ""   } | 
+|Input|Blocks|Oracle|
+|---------------|---------|-------|
+| {string : null } | Q1B1 - Q2B? - Q3B? - Q4B? -Q5B? - Q6B?|False|
+| {string : ""   } | Q1B2 - Q2B1 - Q3B1 - Q4B1 - Q5B1 - Q6B1|`True`|
+| {string : "[] ( [] ) {}"   } | Q1B2 - Q2B2 - Q3B1 - Q4B1 - Q5B1 - Q6B1|`True`|
+| {string : "[] ( [] ) `(`}"   } | Q1B2 - Q2B2 - Q3B1 - Q4B1 - Q5B1 - Q6B2|False|
+| {string : "[] ( `(`] ) {}"   } | Q1B2 - Q2B2 - Q3B1 - Q4B1 - Q5B2 - Q6B1|False|
+| {string : "[] ( `(`] ) `(`}"   } | Q1B2 - Q2B2 - Q3B1 - Q4B1 - Q5B2 - Q6B2|False|
+| {string : "`(`] ( [] ) {}"   } | Q1B2 - Q2B2 - Q3B1 - Q4B2 - Q5B1 - Q6B1|False|
+| {string : "`(`] ( [] ) `(`}"   } | Q1B2 - Q2B2 - Q3B1 - Q4B2 - Q5B1 - Q6B2|False|
+| {string : "`(`] ( `(`] ) {}"   } | Q1B2 - Q2B2 - Q3B1 - Q4B2 - Q5B2 - Q6B1|False|
+| {string : "`(`] ( `(`] ) `(`}"   } | Q1B2 - Q2B2 - Q3B1 - Q4B2 - Q5B2 - Q6B2|False|
+
+2. Statement Coverage
+
+In this step we simulated the execution of our method according to the different tests we are going to run on it and reported which lines are executed and which are not. We noticed that at no point in our test set did we have a read check of `)` with an element at the top of the `(` stack. 
+
+We therefore have a Statement coverage value of `22/23`.
+
+To do this we add this test:
+
+> |Input|Blocks|Oracle|
+> |---------------|---------|-------|
+> | {string : "[] ( `[`) ) {}" } | Q1B2 - Q2B2 - Q3B2 - Q4B1 - Q5B2 - Q6B1 | False
+
+3. *Base Choice Coverage*
+In our code we don't have any predicate that uses more than two boolean operators but by looking at our tests we never have a case where there are no items on the stack and we match either : `] ) }`. So the statement `st.isEmpty()` will always respond false and the second boolean after the `||` operator will always be executed. We should have more tests to make sure this boolean could be `True` and not execute the rest of the evaluation after the `||` and still work properly.
+
+To do this we add this test:
+
+> |Input|Blocks|Oracle|
+> |---------------|---------|-------|
+> | {string : "[] [ `)` ] {}" } | Q1B2 - Q2B2 - Q3B2 - Q4B1 - Q5B2 - Q6B1 | False
+> | {string : "[] ( `]` ) {}" } | Q1B2 - Q2B2 - Q3B2 - Q4B1 - Q5B2 - Q6B1 | False
+> | {string : "[] ( `}` ) {}" } | Q1B2 - Q2B2 - Q3B2 - Q4B1 - Q5B2 - Q6B1 | False
+
+4. PIT Tests:
+
+> TODO
+
+
 
 
