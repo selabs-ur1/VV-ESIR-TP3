@@ -27,19 +27,24 @@ class Date implements Comparable<Date> {
     		return false;
     	}
     	
+    	
+    	//we consider neg year as false
+    	if(year < 0){
+    		return false;
+    	}
+    	
     	if(isA30dayMonth(month)) {
 			if(day > 30) { return false; }
 		}
     	
-    	if(isLeapYear(year)) {
-    		if(isFebruary(month)) {
-    			if(day > 28) { return false; }
-    		}
-    	}
-    	else {
-    		if(isFebruary(month)) {
+    	if(isFebruary(month)) {
+    		if(isLeapYear(year)) {
     			if(day > 29) { return false; }
     		}
+    		else {
+    			if(day > 28 ) { return false; }
+    		}
+    	
     	}
     	
     	return true;
