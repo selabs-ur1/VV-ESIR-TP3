@@ -8,7 +8,7 @@ public class TLSSocketFactory {
 
     public void prepareSocket(SSLSocket socket) {
 
-        String[] supported = socket.getSupportedProtocols();
+    	String[] supported = socket.getSupportedProtocols();
         String[] enabled = socket.getEnabledProtocols();
 
 

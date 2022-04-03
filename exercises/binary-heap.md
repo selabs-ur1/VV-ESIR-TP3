@@ -40,3 +40,68 @@ Use the following steps to design the test suite:
 Use the project in [tp3-heap](../code/tp3-heap) to complete this exercise.
 
 ## Answer
+
+### Input Space Partitionning
+
+The common characteristic is the heap size.
+
+#### Pop
+| Characteristics |           | Blocks |           |                   |
+|-----------------|-----------|--------|-----------|-------------------|
+|                 |           | b1     | b2        | b3                |
+| q1              | heap size | empty  | 1 element | multiple elements |
+
+
+#### Peek
+| Characteristics |           | Blocks |           |
+|-----------------|-----------|--------|-----------|
+|                 |           | b1     | b2        |
+| q1              | heap size | empty  | multiple element |
+
+
+#### Push 
+| Characteristics |           | Blocks |           |
+|-----------------|-----------|--------|-----------|
+|                 |           | b1     | b2        |
+| q1              | heap size | empty  | multiple elements |
+
+
+#### Count
+| Characteristics |           | Blocks |                    |
+|-----------------|-----------|--------|--------------------|
+|                 |           | b1     | b2                 |
+| q1              | heap size | empty  | multiple elements  |
+
+
+### Statement coverage
+
+statement coverage : 97,4 %
+Covered instructions : 457
+Missed instructions : 12
+
+The missed instruction are :
+```java
+Assertions.assertThrows(NoSuchElementException.class, () -> heap.pop());
+```
+in test case wich seems to be normal.
+
+### PIT
+
+|             | Line Coverage | Mutation Coverage |
+|-------------|---------------|-------------------|
+| PIT Summary | 100% (45/45)  | 86% (32/37)       |
+
+Alive mutants are all : ```changed conditional boudary```
+After analysis it happens when two elements are equals, it does not cause any bug, it simply exange the place two node of the same  value.
+
+Before mutation :
+```java
+if(left < counter && comparator.compare(heap2.get(left), heap2.get(i)) < 0)
+```
+
+After mutation :
+```java
+if(left < counter && comparator.compare(heap2.get(left), heap2.get(i)) <= 0)
+```
+
+Both are correct.
