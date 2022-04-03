@@ -15,3 +15,12 @@ Include the improved test code in this file.
 
 ## Answer
 
+The different test smells that we saw during the course and that are implemented by these PMD rules are :
+
+Eager test using JUnitTestContainsTooManyAsserts
+
+Assertion roulette using JUnitAssertionsShouldIncludeMessage and JUnitTestContainsTooManyAsserts
+
+The Free Ride using JUnitTestContainsTooManyAsserts
+
+We used the PMD rule JUnitTestContainsTooManyAsserts on the common-math project and we detected that a lot of tests have too many assertions. To improve these tests, we just need to break down the tests that have too many assertions into many different test.

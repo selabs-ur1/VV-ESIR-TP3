@@ -26,3 +26,9 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+After implementing the isBanlancedString function, we moved on to testing. So we divided the inputs into three arrays according to the specificities of the inputs: the balanced string array represents balancedString, the separatorImbric array represents strings with parentheses or square brackets that are nested. The missingparator array represents strings that are missing a parenthesis or a closing or opening bracket. So in the setUp() method we initialized these three arrays. So with the three test methods (in order to test if our program returns the right answers for each element of the three arrays) we can evaluate the quality of the code produced. In order to measure the test conversion we have added the following plugin to the POM.xml:
+<plugin>
+  <groupId>org.jacoco</groupId>
+  <artifactId>jacoco-maven-plugin</artifactId>
+  <version>0.8.6</version>
+</plugin>

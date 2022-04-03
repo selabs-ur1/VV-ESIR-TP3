@@ -53,3 +53,9 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+After implementing the Date class , we moved on to testing. To test our code efficiently, we have separated the entries into several entities according to their specificity. Thus we have dates that match the format, dates that do not respect the length of the months, dates that do not respect the formats. For each type of date we have written a test function. In the method setUp() we have initialized these 3 types of dates. In order to measure the test coverage, we use Jacoco which is a code coverage reports generator for Java projects. However despite adding the plugin below the test report was not generated.
+<plugin>
+  <groupId>org.jacoco</groupId>
+  <artifactId>jacoco-maven-plugin</artifactId>
+  <version>0.8.6</version>
+</plugin>

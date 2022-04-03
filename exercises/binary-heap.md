@@ -40,3 +40,11 @@ Use the following steps to design the test suite:
 Use the project in [tp3-heap](../code/tp3-heap) to complete this exercise.
 
 ## Answer
+
+After implementing the Binary Heap class , we moved on to testing. However, we first tried to separate the entries into several arrays according to their specificity as for the balanced String but we had problems. So in order to test we created a Binary Heap object.  So we initialized this object in the setUp() method. We tested the addition, deletion and total deletion (deleting all the elements). To test the addition we added numbers from 1 to 10 to check if the minimum in the binary Heap was always 1. We applied similar methods for the other test methods. In order to measure the test coverage, we use Jacoco which is a code coverage reports generator for Java projects. However despite adding the plugin below the test report was not generated.
+
+<plugin>
+  <groupId>org.jacoco</groupId>
+  <artifactId>jacoco-maven-plugin</artifactId>
+  <version>0.8.6</version>
+</plugin>

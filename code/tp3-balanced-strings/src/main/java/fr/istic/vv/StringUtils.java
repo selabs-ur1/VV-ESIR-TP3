@@ -1,11 +1,51 @@
 package fr.istic.vv;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class StringUtils {
 
     private StringUtils() {}
 
     public static boolean isBalanced(String str) {
-        return false;
+    	Deque<Character> stack
+        = new ArrayDeque<Character>();
+    for (int i = 0; i < str.length(); i++)
+    {
+        char x = str.charAt(i);
+
+        if (x == '(' || x == '[' || x == '{')
+        {
+           
+            stack.push(x);
+            continue;
+        }
+
+        if (stack.isEmpty())
+            return false;
+        char check;
+        switch (x) {
+        case ')':
+            check = stack.pop();
+            if (check == '{' || check == '[')
+                return false;
+            break;
+
+        case '}':
+            check = stack.pop();
+            if (check == '(' || check == '[')
+                return false;
+            break;
+
+        case ']':
+            check = stack.pop();
+            if (check == '(' || check == '{')
+                return false;
+            break;
+        }
+    }
+
+    return (stack.isEmpty());
     }
 
 }
