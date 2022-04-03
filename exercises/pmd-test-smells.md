@@ -15,3 +15,19 @@ Include the improved test code in this file.
 
 ## Answer
 
+The first test smell identified is Piggybacking with the test JUnitTestContainsTooManyAsserts.md.
+
+We detected a test smell in Commons Collections, in the AbstractArrayListTest.java. The test is the following:
+```
+@Test
+public void testNewArrayList() {
+    final ArrayList<E> list = makeObject();
+    assertTrue("New list is empty", list.isEmpty());
+    assertEquals("New list has size zero", 0, list.size());
+    
+    assertThrows(IndexOutOfBoundsException.class, () -> list.get(1));
+}
+```
+
+The problem here is that the isEmpty() method is the exact same thing as list.size() == 0, so the first two assertions are checking the same thing.
+We can remove one or the other and the test will function as it did already.
