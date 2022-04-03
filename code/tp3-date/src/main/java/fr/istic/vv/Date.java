@@ -78,12 +78,24 @@ class Date implements Comparable<Date> {
     
     //A leap year is a year that is divisible by 4 and 400 without a remainder.
     public static boolean isLeapYear(int year) { 
-    	
-    	int remain4 = year % 4;
-    	int remain400 = year % 400;
-    	boolean isLeapYear = (remain4 == 0) && (remain400 == 0);
-    	
-    	return isLeapYear; 
+    	    	   // leap year if perfectly divisible by 400
+    	   if (year % 400 == 0) {
+    	      return true;
+    	   }
+    	   // not a leap year if divisible by 100
+    	   // but not divisible by 400
+    	   else if (year % 100 == 0) {
+    	      return false;
+    	   }
+    	   // leap year if not divisible by 100
+    	   // but divisible by 4
+    	   else if (year % 4 == 0) {
+    	      return true;
+    	   }
+    	   // all other years are not leap years
+    	   else {
+    	      return false;
+    	   }
     }
 
     public Date nextDate() throws Exception { 
@@ -134,7 +146,7 @@ class Date implements Comparable<Date> {
     	return (month == 1) ? 12 : month - 1 ;
     }
     
-    private static int numberOfDayOfMonth(int month){
+    private static int numberOfDayOfMonth(int month, int year){
     	if(isA31dayMonth(month)) {
     		return 31;
     	}
@@ -143,7 +155,7 @@ class Date implements Comparable<Date> {
     	}
     	
     	if(isFebruary(month)) {
-    		if(isLeapYear(month)) {
+    		if(isLeapYear(year)) {
     			return 29;
     		}
     		else {
@@ -160,10 +172,10 @@ class Date implements Comparable<Date> {
     		int previousMonth = previousMonth(month);
     		if(previousMonth == 12) {
     			//on est le 1er janvier
-    			return new Date(numberOfDayOfMonth(previousMonth), previousMonth, year - 1);
+    			return new Date(numberOfDayOfMonth(previousMonth,year), previousMonth, year - 1);
     		}
     		//on remonte juste d'un mois
-    		return new Date(numberOfDayOfMonth(previousMonth), previousMonth, year);
+    		return new Date(numberOfDayOfMonth(previousMonth,year), previousMonth, year);
     	}
     	
     	//jour lambda != 1
