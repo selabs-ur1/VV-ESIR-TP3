@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Date.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp3-date</a> &gt; <a href="index.source.html" class="el_package">fr.istic.vv</a> &gt; <span class="el_source">Date.java</span></div><h1>Date.java</h1><pre class="source lang-java linenums">package fr.istic.vv;
+
+class Date implements Comparable&lt;Date&gt; {
+	
+	public int d, m, y;
+
+    public Date(int day, int month, int year) throws Exception 
+<span class="fc" id="L8">    {</span>
+<span class="fc bfc" id="L9" title="All 2 branches covered.">    	if (isValidDate(day,month,year))</span>
+    	{
+<span class="fc" id="L11">        	d= day;</span>
+<span class="fc" id="L12">        	m = month;</span>
+<span class="fc" id="L13">        	y = year;</span>
+    	}
+    	else
+    	{
+<span class="fc" id="L17">    		throw new Exception(&quot;The date is not valid&quot;);</span>
+    	}
+<span class="fc" id="L19">    }</span>
+
+    public static boolean isValidDate(int day, int month, int year) 
+    { 
+<span class="fc bfc" id="L23" title="All 4 branches covered.">    	boolean validMonth = month &gt; 0 &amp;&amp; month &lt; 13;</span>
+    	
+<span class="fc bfc" id="L25" title="All 2 branches covered.">    	if (!validMonth)</span>
+<span class="fc" id="L26">    	{return false;}</span>
+    	
+<span class="fc bfc" id="L28" title="All 4 branches covered.">    	boolean validDay = day &gt; 0 &amp;&amp; day &lt; nbMaxOfDays(day,month,year) + 1 ;</span>
+    	
+<span class="fc" id="L30">    	return validDay; </span>
+    }
+    
+    private static int nbMaxOfDays(int day, int month, int year)
+    {
+    	int nb;
+<span class="fc bfc" id="L36" title="All 8 branches covered.">    	if (month == 4 || month == 6 || month == 9 || month == 11)</span>
+    	{
+<span class="fc" id="L38">    		nb = 30;</span>
+    	}
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    	else if (month == 2)</span>
+    	{
+<span class="fc bfc" id="L42" title="All 2 branches covered.">    		if (isLeapYear(year))</span>
+    		{
+<span class="fc" id="L44">    			nb = 29;</span>
+    		}
+    		else
+    		{
+<span class="fc" id="L48">    			nb = 28;</span>
+    		}
+    	}
+    	else
+    	{
+<span class="fc" id="L53">    		nb = 31;</span>
+    	}
+    	
+<span class="fc" id="L56">    	return nb;</span>
+    }
+
+    public static boolean isLeapYear(int year) 
+    { 
+<span class="fc bfc" id="L61" title="All 6 branches covered.">    	return (year % 400 == 0) || (year % 100 != 0 &amp;&amp; year % 4 == 0);</span>
+    }
+
+    public Date nextDate() throws Exception 
+    { 
+    	int day,month,year;
+<span class="fc" id="L67">    	int finMois = nbMaxOfDays(d,m,y);</span>
+    	
+<span class="fc bfc" id="L69" title="All 2 branches covered.">    	if (d+1 &gt; finMois)</span>
+    	{
+<span class="fc" id="L71">    		day = 1;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">    		if (m+1 &gt; 12)</span>
+    		{
+<span class="fc" id="L74">    			month = 1;</span>
+<span class="fc" id="L75">    			year = y+1;</span>
+    		}
+    		else
+    		{
+<span class="fc" id="L79">    			month = m+1;</span>
+<span class="fc" id="L80">    			year = y;</span>
+    		}
+    	}
+    	else
+    	{
+<span class="fc" id="L85">    		day = d+1;</span>
+<span class="fc" id="L86">    		month = m;</span>
+<span class="fc" id="L87">    		year = y;</span>
+    	}
+    		
+<span class="fc" id="L90">    	return new Date(day,month,year); </span>
+    }
+
+    public Date previousDate() throws Exception 
+    { 
+    	int day,month,year;
+    	
+<span class="fc bfc" id="L97" title="All 2 branches covered.">    	if (d-1 &lt; 1)</span>
+    	{
+<span class="fc bfc" id="L99" title="All 2 branches covered.">    		if (m == 1)</span>
+    		{
+<span class="fc" id="L101">    			day = 31;</span>
+<span class="fc" id="L102">    			month = 12;</span>
+<span class="fc" id="L103">    			year = y-1;</span>
+    		}
+    		else
+    		{
+<span class="fc" id="L107">    			day = nbMaxOfDays(d,m-1,y);</span>
+<span class="fc" id="L108">    			month = m-1;</span>
+<span class="fc" id="L109">    			year = y;</span>
+    		}
+    	}
+    	else
+    	{
+<span class="fc" id="L114">    		day = d-1;</span>
+<span class="fc" id="L115">    		month = m;</span>
+<span class="fc" id="L116">    		year = y;</span>
+    	}
+    		
+<span class="fc" id="L119">    	return new Date(day,month,year);</span>
+    }
+
+    public int compareTo(Date other) 
+    { 
+<span class="fc bfc" id="L124" title="All 2 branches covered.">    	if (other == null)</span>
+<span class="fc" id="L125">    	{throw new NullPointerException(&quot;other is null&quot;);}</span>
+    	
+<span class="fc bfc" id="L127" title="All 2 branches covered.">    	if (y &gt; other.y)</span>
+<span class="fc" id="L128">    	{return 1;}</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">    	if (y &lt; other.y)</span>
+<span class="fc" id="L130">    	{return -1;}</span>
+    	
+<span class="fc bfc" id="L132" title="All 2 branches covered.">    	if (m &gt; other.m)</span>
+<span class="fc" id="L133">    	{return 1;}</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">    	if (m &lt; other.m)</span>
+<span class="fc" id="L135">    	{return -1;}</span>
+    	
+<span class="fc bfc" id="L137" title="All 2 branches covered.">    	if (d &gt; other.d)</span>
+<span class="fc" id="L138">    	{return 1;}</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">    	if (d &lt; other.d)</span>
+<span class="fc" id="L140">    	{return -1;}</span>
+    	
+<span class="fc" id="L142">    	return 0; </span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

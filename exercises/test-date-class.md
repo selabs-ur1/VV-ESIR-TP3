@@ -52,4 +52,65 @@ Use the following steps to design the test suite:
 Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
+Jugieau Barthelat
+
+1.
+The methods isValidDate, isLeapYear and the constructor should all be tested by our other methods.
+We do implement 2 basic Tests for isValidDate, a date that should work and one that should not.
+
+nextDate :
+A generic date : 1, 1, 2000
+The end of a 30 days long month : 30, 4/6/9/11, 2000
+The end of a 31 days long month that isn’t december : 31, 1/3/5/7/8/10, 2000
+The end of December : 31, 12, 2000
+The end of February on a leap year (tested with a multiple of 400 and a generic multiple of 4) : 29, 2, 2000/2016
+The usual end of February (tested with a generic year and a multiple of 100 and 4) : 28, 2, 1900/2001
+
+previousDate :
+A generic date : 2, 1, 2000
+Previous month is 30 days long : 1, 5/7/10/12, 2000
+Previous month is 31 days long and not december : 1, 2/4/6/8/9/11, 2000
+Previous month is December : 1, 1, 2000
+Previous month is February on a leap year (tested with a multiple of 400 and a generic multiple of 4) : 1, 3, 2000/2016
+Previous month is February on a usual year (tested with a generic year and a multiple of 100 and 4) : 1, 3, 1900/2001
+
+compareTo : 
+2 equal dates
+year1<year2
+year1==year2 but month1<month2
+year1==year2 && month1==month2 but day1<day2
+year1>year2
+year1==year2 but month1>month2
+year1==year2 && month1==month2 but day1>day2
+
+
+2. and 3.
+
+We have an instruction coverage of 95% and branch coverage of 88%.
+We missed one instruction and branch in compareTo about the other==null condition.
+We add a compareTest with a null Date → 100% coverage
+
+The constructor and isValidDate method are missing a lot more. We never tried to create an incorrect date, never verified a date with a wrong month and branches are missing for the validMonth and validDay conditions.
+
+We replaced the isValidDate tests with Constructor Tests (which uses isValidDate)
+We added a Constructor test with a wrong month.
+
+There are now only 2 missing branches : month >13 and day < -1 which can be quickly implemented.
+The coverage is now 100%.
+
+4.
+There are 3 survivors, all are a Conditional Boundary change.
+One is on “ if (d+1 > finMois) “ in nextDate
+Two are in isValidDate :
+boolean validMonth = month > 0 && month < 13;
+boolean validDay = day > 0 && day < nbMaxOfDays(day,month,year) + 1 ;
+
+isValidDate is one of the base methods that everything builds on, so modifying a line here would let the incorrect date be created.
+The validMonth line for example may allow a month of 13 to pass, however the extreme values are special cases which are treated differently, the 13th month would fall into the else category and be treated as having 31 days for nextDate for example. The only time I ever test a month value too high is with the constructor, which directly relies on isValidDate. As such the error slips by.
+The validDay line is in a similar situation.
+
+Perhaps the survivor in nextDate can be explained by the fact that I only ever use either the last day of the month or the first one, d+1 is therefore always greater (or much smaller) than the end of the month.
+
+
+
 

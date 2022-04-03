@@ -9,3 +9,11 @@ Rewrite these tests with the help of Mockito.
 The initial tests fail to completely test the `TLSSockeetFactory`. In fact, if we *entirely* remove the code inside the body of `prepareSocket` no test case fails.
 
 Propose a solution to this problem in your new Mockito-based test cases.
+
+
+## ANSWER
+Jugieau Barthelat
+
+We indeed saw that when we removed the entire body, the initial test ( without mockito so) was still working. This is due to the test process that doesn't check if the method is invoked or not and just launches an assertion when the methods are called.
+That's why we use mockito and the verify() method to check the number of invocations.
+

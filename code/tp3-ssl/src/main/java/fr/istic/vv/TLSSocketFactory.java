@@ -8,37 +8,37 @@ public class TLSSocketFactory {
 
     public void prepareSocket(SSLSocket socket) {
 
-        String[] supported = socket.getSupportedProtocols();
-        String[] enabled = socket.getEnabledProtocols();
+    	 String[] supported = socket.getSupportedProtocols();
+         String[] enabled = socket.getEnabledProtocols();
 
 
-        List<String> target = new ArrayList<String>();
-        if (supported != null) {
-            // Append the preferred protocols in descending order of preference
-            // but only do so if the protocols are supported
-            TLSProtocol[] values = TLSProtocol.values();
-            for (int i = 0; i < values.length; i++) {
-                final String pname = values[i].getProtocolName();
-                if (existsIn(pname, supported)) {
-                    target.add(pname);
-                }
-            }
-        }
+         List<String> target = new ArrayList<String>();
+         if (supported != null) {
+             // Append the preferred protocols in descending order of preference
+             // but only do so if the protocols are supported
+             TLSProtocol[] values = TLSProtocol.values();
+             for (int i = 0; i < values.length; i++) {
+                 final String pname = values[i].getProtocolName();
+                 if (existsIn(pname, supported)) {
+                     target.add(pname);
+                 }
+             }
+         }
 
-        if (enabled != null) {
-            // Append the rest of the already enabled protocols to the end
-            // if not already included in the list
-            for (String pname : enabled) {
-                if (!target.contains(pname)) {
-                    target.add(pname);
-                }
-            }
-        }
+         if (enabled != null) {
+             // Append the rest of the already enabled protocols to the end
+             // if not already included in the list
+             for (String pname : enabled) {
+                 if (!target.contains(pname)) {
+                     target.add(pname);
+                 }
+             }
+         }
 
-        if (target.size() > 0) {
-            String[] enabling = target.toArray(new String[target.size()]);
-            socket.setEnabledProtocols(enabling);
-        }
+         if (target.size() > 0) {
+             String[] enabling = target.toArray(new String[target.size()]);
+             socket.setEnabledProtocols(enabling);
+         }
 
     }
 

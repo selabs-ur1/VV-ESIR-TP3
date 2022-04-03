@@ -25,4 +25,39 @@ Write below the actions you took on each step and the results you obtained.
 Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to complete this exercise.
 
 ## Answer
+Jugieau Barthelat
+
+1.
+blocks :
+
+The blocks we use for testing are :
+
+No ()[]{}, only other characters
+Not the same number of closing/opened brackets
+Same number but wrong order (closed before being opened)
+Same number and right order with overlap (ex : ([)] )
+Same number and right order, nested brackets
+Same number and right order, no nested brackets
+
+
+2.
+We used Jacoco to find out our statement coverage
+Some instructions and branches are not covered
+By adding a test with an empty string, instructions are now 100% covered.
+
+
+3.
+There are 2 missing branches in the if statement, which correspond to not very important cases or impossible situations (due to nested if)
+
+
+4.
+run with this maven goal :
+org.pitest:pitest-maven:mutationCoverage
+
+So we got 21 mutations killed over 22 which makes a 95% score.
+
+The mutator that survived made a modification on this line
+return pile.isEmpty();
+It is replaced by “return true”. And that’s correct, when we put true instead our test suitcases keep working. But it makes sense because when we exit the previous loop in this code, the stack is necessarily empty.
+
 

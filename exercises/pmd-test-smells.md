@@ -15,3 +15,12 @@ Include the improved test code in this file.
 
 ## Answer
 
+Jugieau Barthelat
+
+In class we talked about the general architecture of a test suite. Tests are divided in three parts : the @Before part which should be executed before each test, the @After part which should be executed after each test, even if this part is not that useful in Java because of the garbage collector. @Before annotations should be before the setUp() method and @After should be before the tearDown() method.
+
+So rules which referred to that are:
+,JUnit4TestShouldUseAfterAnnotation ,JUnit4TestShouldUseBeforeAnnotation , JUnit4TestShouldUseTestAnnotation
+So we tried the before and after annotation rules on the math and CLI projects, and PMD found nothing wrong.
+We did get some warnings with the AssertionsShouldIncludeMessage and TestContainsTooManyAsserts rules, although these are not the most necessary rules to follow.
+
