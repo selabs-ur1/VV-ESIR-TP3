@@ -53,6 +53,29 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+---
+**Student**  
+<table align="left">
+<tr>
+  <th> First Name </th>
+  <th> Last Name </th>
+  <th> @Mail adress </th>
+</tr>
+<tr>
+  <td> Léo </td>
+  <td> Thuillier </td>
+  <td> leo.thuillier@etudiant.univ-rennes1.fr </td>
+</tr>
+<tr>
+  <td> Thibaut </td>
+  <td> Le Marre </td>
+  <td> thibaut.le-marre@etudiant.univ-rennes1.fr </td>
+</tr>
+</table>
+<br><br><br><br><br><br>
+
+---
+
 1. *Input Space Partitioning*
 
 Here is the insput space partitionning we have done for the method isValidDate().
