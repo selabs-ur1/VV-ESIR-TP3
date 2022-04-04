@@ -15,3 +15,4 @@ Include the improved test code in this file.
 
 ## Answer
 
+The JUnitTestContainsTooManyAsserts checks that a test doesn't have too many asserts that verify too many functionalities, this serves to prevent the Eager test antipattern.

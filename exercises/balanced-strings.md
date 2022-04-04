@@ -26,3 +26,16 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. The first two chatacteristics we can see in for this method is wether the input is null or not null, this provides us with two partitions already. Next up i think we can partition the string input into inputs that contain grouping symbols `{}[]()` and strings that don't (since it wouldn't be much use extensively testing those).
+Some of the inputs are : 
+`
+"", 
+"()", 
+"()[]{}", 
+"([{([{}])", 
+"([{})]}", 
+`
+
+2. In this step we created the Test Suite that would divide the tests into parts to more clearly cover parts of the input domain.
+
+3. To satisfy the Base Choice Coverage we will add some tests into the suite that will specifically test for the string is empty case and the case where the string does not contain grouping symbols.
