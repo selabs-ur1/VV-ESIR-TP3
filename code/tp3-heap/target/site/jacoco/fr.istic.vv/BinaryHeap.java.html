@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BinaryHeap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp3-heap</a> &gt; <a href="index.source.html" class="el_package">fr.istic.vv</a> &gt; <span class="el_source">BinaryHeap.java</span></div><h1>BinaryHeap.java</h1><pre class="source lang-java linenums">package fr.istic.vv;
+
+import java.util.Comparator;
+import java.util.ArrayList; // import the ArrayList class
+import java.util.Collections;
+import java.util.NoSuchElementException;
+
+class BinaryHeap&lt;T&gt; {
+
+    private Comparator&lt;T&gt; comparator;
+<span class="fc" id="L11">    private ArrayList&lt;T&gt; table = new ArrayList&lt;T&gt;(); // Create an ArrayList object</span>
+
+<span class="fc" id="L13">    public BinaryHeap(Comparator&lt;T&gt; comparator) {</span>
+<span class="fc" id="L14">        this.comparator = comparator;</span>
+<span class="fc" id="L15">      }</span>
+
+    public T pop() { 
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if (count() &lt;= 0) {</span>
+<span class="fc" id="L19">            throw new NoSuchElementException(&quot;Exception message&quot;);</span>
+        }
+<span class="fc" id="L21">        T element_to_send = table.get(0); //Get the first element</span>
+<span class="fc" id="L22">        table.remove(0); //Remove the first element</span>
+<span class="fc" id="L23">        return element_to_send;</span>
+    }
+
+    public T peek() { 
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (count() &lt;= 0) {</span>
+<span class="fc" id="L28">            throw new NoSuchElementException(&quot;Exception message&quot;);</span>
+        }
+<span class="fc" id="L30">        T element_to_send = table.get(0); //Get the first element</span>
+<span class="fc" id="L31">        return element_to_send;</span>
+    }
+
+    public void push(T element) { 
+<span class="fc" id="L35">        table.add(element); //Add the element at the end</span>
+<span class="fc" id="L36">        sortTable(); //Sort the table to have a correct position</span>
+<span class="fc" id="L37">     }</span>
+
+<span class="fc" id="L39">    public int count() { return table.size(); }</span>
+
+    private void sortTable() {
+<span class="fc" id="L42">        Collections.sort(table, comparator); //Sort the table in function of the Comparator</span>
+<span class="fc" id="L43">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

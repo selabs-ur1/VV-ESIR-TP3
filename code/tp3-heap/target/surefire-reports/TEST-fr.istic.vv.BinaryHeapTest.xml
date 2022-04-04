@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="fr.istic.vv.BinaryHeapTest" time="0.138" tests="14" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/Armonius/Documents/ESIR/S8/VV-ESIR-TP3/code/tp3-heap/target/test-classes:/home/Armonius/Documents/ESIR/S8/VV-ESIR-TP3/code/tp3-heap/target/classes:/root/.m2/repository/org/junit/jupiter/junit-jupiter/5.6.2/junit-jupiter-5.6.2.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.2/junit-jupiter-api-5.6.2.jar:/root/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/root/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/root/.m2/repository/org/junit/platform/junit-platform-commons/1.6.2/junit-platform-commons-1.6.2.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.6.2/junit-jupiter-params-5.6.2.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.2/junit-jupiter-engine-5.6.2.jar:/root/.m2/repository/org/junit/platform/junit-platform-engine/1.6.2/junit-platform-engine-1.6.2.jar:"/>
+    <property name="java.vm.vendor" value="Red Hat, Inc."/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://www.redhat.com/"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="os.name" value="Linux"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="GB"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-11.0.13.0.8-2.fc34.x86_64/lib"/>
+    <property name="sun.java.command" value="/home/Armonius/Documents/ESIR/S8/VV-ESIR-TP3/code/tp3-heap/target/surefire/surefirebooter6260166500476224884.jar /home/Armonius/Documents/ESIR/S8/VV-ESIR-TP3/code/tp3-heap/target/surefire 2022-04-02T20-49-35_113-jvmRun1 surefire4309189680906168647tmp surefire_014650442808642999132tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/home/Armonius/Documents/ESIR/S8/VV-ESIR-TP3/code/tp3-heap/target/test-classes:/home/Armonius/Documents/ESIR/S8/VV-ESIR-TP3/code/tp3-heap/target/classes:/root/.m2/repository/org/junit/jupiter/junit-jupiter/5.6.2/junit-jupiter-5.6.2.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.2/junit-jupiter-api-5.6.2.jar:/root/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/root/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/root/.m2/repository/org/junit/platform/junit-platform-commons/1.6.2/junit-platform-commons-1.6.2.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.6.2/junit-jupiter-params-5.6.2.jar:/root/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.2/junit-jupiter-engine-5.6.2.jar:/root/.m2/repository/org/junit/platform/junit-platform-engine/1.6.2/junit-platform-engine-1.6.2.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/root"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2021-10-19"/>
+    <property name="java.home" value="/usr/lib/jvm/java-11-openjdk-11.0.13.0.8-2.fc34.x86_64"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/home/Armonius/Documents/ESIR/S8/VV-ESIR-TP3/code/tp3-heap"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="/home/Armonius/Documents/ESIR/S8/VV-ESIR-TP3/code/tp3-heap/target/surefire/surefirebooter6260166500476224884.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="11.0.13+8"/>
+    <property name="user.name" value="root"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="5.15.12-100.fc34.x86_64"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="18.9"/>
+    <property name="localRepository" value="/root/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&amp;component=java-11-openjdk&amp;version=34"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="11.0.13"/>
+    <property name="user.dir" value="/home/Armonius/Documents/ESIR/S8/VV-ESIR-TP3/code/tp3-heap"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Red Hat, Inc."/>
+    <property name="java.vm.version" value="11.0.13+8"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="55.0"/>
+  </properties>
+  <testcase name="PushPeekPopCount" classname="fr.istic.vv.BinaryHeapTest" time="0.079"/>
+  <testcase name="PushPopCount" classname="fr.istic.vv.BinaryHeapTest" time="0.002"/>
+  <testcase name="PushOneElement" classname="fr.istic.vv.BinaryHeapTest" time="0.001"/>
+  <testcase name="PushSeveralElements" classname="fr.istic.vv.BinaryHeapTest" time="0.002"/>
+  <testcase name="PopVoidElement" classname="fr.istic.vv.BinaryHeapTest" time="0.005"/>
+  <testcase name="PeekElement" classname="fr.istic.vv.BinaryHeapTest" time="0.001"/>
+  <testcase name="PeekVoidElement" classname="fr.istic.vv.BinaryHeapTest" time="0.002"/>
+  <testcase name="PopPushPopElement" classname="fr.istic.vv.BinaryHeapTest" time="0.002"/>
+  <testcase name="PeekOneElement" classname="fr.istic.vv.BinaryHeapTest" time="0.001"/>
+  <testcase name="PopElement" classname="fr.istic.vv.BinaryHeapTest" time="0.001"/>
+  <testcase name="PopOneElement" classname="fr.istic.vv.BinaryHeapTest" time="0.001"/>
+  <testcase name="PushPeekCount" classname="fr.istic.vv.BinaryHeapTest" time="0.001"/>
+  <testcase name="VoidCount" classname="fr.istic.vv.BinaryHeapTest" time="0.001"/>
+  <testcase name="PushPeekPopPushCount" classname="fr.istic.vv.BinaryHeapTest" time="0.001"/>
+</testsuite>

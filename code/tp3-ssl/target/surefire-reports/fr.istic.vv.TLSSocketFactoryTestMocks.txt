@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: fr.istic.vv.TLSSocketFactoryTestMocks
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.42 s <<< FAILURE! - in fr.istic.vv.TLSSocketFactoryTestMocks
+fr.istic.vv.TLSSocketFactoryTestMocks.typical  Time elapsed: 0.044 s  <<< FAILURE!
+org.mockito.exceptions.verification.WantedButNotInvoked: 
+
+Wanted but not invoked:
+sSLSocket.setEnabledProtocols(
+    <any java.lang.String[]>
+);
+-> at fr.istic.vv.TLSSocketFactoryTestMocks.typical(TLSSocketFactoryTestMocks.java:53)
+Actually, there were zero interactions with this mock.
+
+	at fr.istic.vv.TLSSocketFactoryTestMocks.typical(TLSSocketFactoryTestMocks.java:53)
+

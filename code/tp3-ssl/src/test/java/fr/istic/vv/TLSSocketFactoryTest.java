@@ -53,7 +53,7 @@ public class TLSSocketFactoryTest {
     }
 
 
-    private String[] shuffle(String[] in) {
+    public static String[] shuffle(String[] in) {
         List<String> list = new ArrayList<String>(Arrays.asList(in));
         Collections.shuffle(list);
         return list.toArray(new String[0]);

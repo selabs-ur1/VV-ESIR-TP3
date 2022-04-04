@@ -53,3 +53,25 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+1. In this class, we had 5 function to test : isValidDate, isLeapYear, nextDate, previousDate and compareTo. 
+
+isValidDate : Several case here. The year, month and day can't be negative, the days cannot exceed 30 or 31 depending on the month. Also the month of February is special. There can be no more than 28 days when the year is not a leap year. So there are several cases. So we followed the input space partitioning method and came up with 6 test cases (explained in the textbook).
+
+isLeapyear : We have only one block for the year. We created 4 case : year is negative, year equal zero, year is a leap year and year is not a leap year. Therefore, we created 4 test cases.
+
+nextDate: We have created different test cases according to different scenarios: 31 December, 28 February bisextile/non-bistextile year, 29 February bisextile year or when the month ends.
+
+previousDate: we did like in the nextDate method but we looked at the beginning of the month.
+
+compareTo : No particular issue here.
+
+2. We use Jacoco to evaluate the coverage of the class. We added several test to obtain the higher coverage rate. The last remaining percentages come from the constructor, which is not tested.
+ 
+ ![image](images/Jacoco_ex4_1.png)
+ 
+ ![image](images/Jacoco_ex4.png)
+ 
+ 4. We run the command `sudo mvn test-compile org.pitest:pitest-maven:mutationCoverage` like we did in the previous exercise and we obtain :
+
+![image](images/Pit_Ex4.png)
+
