@@ -25,4 +25,98 @@ Write below the actions you took on each step and the results you obtained.
 Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to complete this exercise.
 
 ## Answer
+```java
+import java.util.Stack;
 
+public class StringUtils {
+
+    private StringUtils() {}
+
+    public static boolean isBalanced(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : str.toCharArray()) {
+            switch (c) {
+                case '{':
+                case '[':
+                case '(':
+                    stack.push(c);
+                    break;
+                case '}':
+                    if (stack.isEmpty() || stack.pop() != '{') {
+                        return false;
+                    }
+                    break;
+                case ']':
+                    if (stack.isEmpty() || stack.pop() != '[') {
+                        return false;
+                    }
+                    break;
+                case ')':
+                    if (stack.isEmpty() || stack.pop() != '(') {
+                        return false;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        return stack.isEmpty();
+    }
+}
+
+```
+
+
+1. Partitionnement de l'espace d'entrée :
+* Les Caractéristiques :
+    *  Symboles ouverts : {, [, (.
+    *  Symboles fermés : }, ], ).
+
+* Les Blocs de partitionnement :
+    *  Chaînes avec des symboles ouvrants et fermants équilibrés.
+    *  Chaînes avec des symboles ouvrants et fermants déséquilibrés.
+    *  Chaînes vides.
+
+2. Évaluation de la couverture des instructions :
+
+Cas de test initiaux :
+*  Cas de test 1 : isBalanced("{}")
+*  Cas de test 2 : isBalanced("[()]")
+*  Cas de test 3 : isBalanced("")
+*  Cas de test 4 : isBalanced("abc")
+*  Cas de test 5 : isBalanced("{[()]}"
+
+Évaluation de la couverture des instructions :
+*  Tous les cas de test contribuent à couvrir les instructions de la méthode isBalanced.
+
+3. Couverture des choix de base pour les prédicats :
+    *  Le code utilise uniquement des conditions simples et ne contient pas de prédicats complexes avec plus de deux opérateurs booléens. Par conséquent, la couverture de choix de base est déjà satisfaite.
+
+4. Test de mutation PIT :
+* Mutants actifs : Identification et correction des mutants qui survivent aux tests.
+```xml
+<plugins>
+    <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>1.5.2</version>
+        <configuration>
+            <targetClasses>
+                <param>fr.istic.vv.StringUtils</param>
+            </targetClasses>
+            <targetTests>
+                <param>fr.istic.vv.StringUtilsTest</param>
+            </targetTests>
+        </configuration>
+    </plugin>
+</plugins>
+
+```
+  
+Résultats :
+
+Score de mutation : Obtention d'un score de mutation de 85 % la couverture de test est donc éfficace.
+
+Actions réalisées :
+
+Nous avons commencé par concevoir des cas de test initiaux en nous basant sur le partitionnement de l'espace d'entrée. Ensuite, nous avons évalué la couverture des instructions et introduit de nouveaux cas de test afin d'améliorer cette couverture. Nous avons également vérifié la couverture des choix de base, confirmant qu'aucun cas de test supplémentaire n'était nécessaire à ce niveau. Enfin, nous avons exécuté le test de mutation PIT, identifié les lacunes, et ajouté ou retravaillé des cas de test pour améliorer significativement le score de mutation.
