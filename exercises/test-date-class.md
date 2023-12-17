@@ -51,8 +51,8 @@ Use the following steps to design the test suite:
 
 Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
-## Answer
-# 1.
+# Answer
+## 1.
 
 # isValidDate()
 Dans le cours on définis le partitionning des dates tel que:
@@ -73,7 +73,7 @@ On peut donc définir 6 cas de test :
 
 # isLeapYear()
 
-cette fois on défini le tableau:
+Cette fois on défini le tableau:
 
 |caractéristique|b1|b2|
 |:--|:--|:--|
@@ -81,7 +81,7 @@ cette fois on défini le tableau:
 | c2 : years%100 = 0|vrai|faux|
 | c3 : years%400 = 0 |vrai |faux|
 
-ce qui donne les cas: 
+Ce qui donne les cas: 
 
 |caractéristique|b1|b2|
 |:--|:--|:--|
@@ -95,7 +95,7 @@ ce qui donne les cas:
 |:--|:--|:--|:--|:--|
 | c1 |< 0| = 0 | > 0|error|
 
-on peut tester sur : 
+On peut tester sur : 
 
 |caractéristique|b1|b2|b3|b4|
 |:--|:--|:--|:--|:--|
@@ -104,14 +104,14 @@ on peut tester sur :
 
 # nextDate() et previousDate()
 
-pour nextDate()
+Pour nextDate()
 
 |caractéristique|b1|b2|
 |:--|:--|:--|
 | c1 = dernier jour du mois | vrai | faux |
 | c1 = dernier jour de l'année | vrai |  |
 
-soit : 
+Soit : 
 
 |caractéristique|b1|b2|
 |:--|:--|:--|
@@ -133,13 +133,13 @@ soit
 | c1 = premier jour de l'année | 1/1/3001 |  |
 
 
-Les caractéristiques `day`, `month` et `year` sont commun au méthodes `isValidDate()`, `nextDate()`, `previousDate()` et `compareTo()`.
+Les caractéristiques `day`, `month` et `year` sont communs aux méthodes `isValidDate()`, `nextDate()`, `previousDate()` et `compareTo()`.
 Dans le cas de `year` il est aussi utilisé par `isLeapYear()`
 
-# 2.
-En cherchant une couverture d'au moins 85% du programme on la vérifie avec jacoco.
+## 2.
+En cherchant une couverture d'au moins 85% du programme on la vérifie avec JaCoCo.
 
-Couverture de test avec les cas précédents:
+Couverture de test avec les cas précédents :
 
 ![converture_de_base](/exercises/date_converture.png)
 
@@ -147,4 +147,15 @@ On peut voir que certaines lignes ne sont pas couverte du tout, on ajoute certai
 
 ![couverture_avancée](/exercises/date_coverture_ameliorer.png)
 
-Il reste un certain nombre de branche non testé mais les 85% sont atteind.
+Il reste un certain nombre de branches non testé mais les 85% sont atteint.
+
+## 4
+On importe PIT à l'aide de Maven et on lance une analyse. PIT génère 89 mutations dont 70 sont tuées par les tests, ce qui représente un score de 79%.
+
+![mutation_de_base](/exercises/date_mutation_79.png)
+
+On peut alors se fixer un objectif d'augmenter le nombre de mutations tuées en ajoutant et en modifiant des tests. En modifiant certaine implémentation et en rajoutant des cas de test on arrive à améliorer le nombre de mutations tuées.
+
+![mutation_ameliore](/exercises/date_mutation_89.png)
+
+On peut alors définir un seuil minimal de mutations tuées pour conserver des tests utiles.

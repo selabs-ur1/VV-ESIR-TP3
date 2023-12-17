@@ -52,13 +52,9 @@ class Date implements Comparable<Date> {
 
     public int compareTo(Date other) { 
         if(other == null) throw new NullPointerException();
-        if(this.year < other.year) return -1;
-        else if(this.year > other.year) return 1;
-        else if(this.month < other.month) return -1;
-        else if(this.month > other.month) return 1;
-        else if(this.day < other.day) return -1;
-        else if(this.day > other.day) return 1;
-        else return 0;
+        int date1 = this.year * 10000 + this.month * 100 + this.day;
+        int date2 = other.year * 10000 + other.month * 100 + other.day;
+        return date1 - date2;
      }
 
 }
