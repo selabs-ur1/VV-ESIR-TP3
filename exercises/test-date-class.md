@@ -135,3 +135,16 @@ soit
 
 Les caractéristiques `day`, `month` et `year` sont commun au méthodes `isValidDate()`, `nextDate()`, `previousDate()` et `compareTo()`.
 Dans le cas de `year` il est aussi utilisé par `isLeapYear()`
+
+# 2.
+En cherchant une couverture d'au moins 85% du programme on la vérifie avec jacoco.
+
+Couverture de test avec les cas précédents:
+
+![converture_de_base](/exercises/date_converture.png)
+
+On peut voir que certaines lignes ne sont pas couverte du tout, on ajoute certain test pour augmenter la couverture :  
+
+![couverture_avancée](/exercises/date_coverture_ameliorer.png)
+
+Il reste un certain nombre de branche non testé mais les 85% sont atteind.

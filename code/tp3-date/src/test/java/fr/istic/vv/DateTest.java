@@ -55,9 +55,13 @@ class DateTest {
         Date d1 = new Date(31,7,2002);
         Date d2 = new Date(25,4,1945);
         Date d3 = new Date(31,12,2012);
+
+        Date d4 = new Date(31,12,-1);
         assertTrue(d1.nextDate().compareTo(new Date(1,8,2002)) == 0);
         assertTrue(d2.nextDate().compareTo(new Date(26,4,1945)) == 0);
         assertTrue(d3.nextDate().compareTo(new Date(1,1,2013)) == 0);
+
+        assertTrue(d4.nextDate().compareTo(new Date(1,1,1)) == 0);
     }
 
     @Test
@@ -65,8 +69,12 @@ class DateTest {
         Date d1 = new Date(1,6,45);
         Date d2 = new Date(13,8,1225);
         Date d3 = new Date(1,1,3001);
+
+        Date d4 = new Date(1,1,1);
         assertTrue(d1.previousDate().compareTo(new Date(31,5,45)) == 0);
         assertTrue(d2.previousDate().compareTo(new Date(12,8,1225)) == 0);
         assertTrue(d3.previousDate().compareTo(new Date(31,12,3000)) == 0);
+
+        assertTrue(d4.previousDate().compareTo(new Date(31,12,-1)) == 0);
     }
 }
