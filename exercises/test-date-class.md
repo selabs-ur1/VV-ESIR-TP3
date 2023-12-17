@@ -52,4 +52,86 @@ Use the following steps to design the test suite:
 Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
+# 1.
 
+# isValidDate()
+Dans le cours on définis le partitionning des dates tel que:
+![img](/exercises/date_partion_isvalid.png)
+
+On peut donc définir 6 cas de test :
+
+|Day|Month|Year|
+|:--|:--|:--|
+| 1|1|-1|
+| -1|-1|0|
+| 0 |4 |2020|
+| -2|0 |2019|
+| 29 |2 |2019|
+| 0 |13 |2018|
+
+
+
+# isLeapYear()
+
+cette fois on défini le tableau:
+
+|caractéristique|b1|b2|
+|:--|:--|:--|
+| c1 : years%4 = 0|vrai|faux|
+| c2 : years%100 = 0|vrai|faux|
+| c3 : years%400 = 0 |vrai |faux|
+
+ce qui donne les cas: 
+
+|caractéristique|b1|b2|
+|:--|:--|:--|
+| c1 : years%4 = 0|4|5|
+| c2 : years%100 = 0|100|104|
+| c3 : years%400 = 0 |400 ||
+
+# compareTo()
+
+|caractéristique|b1|b2|b3|b4|
+|:--|:--|:--|:--|:--|
+| c1 |< 0| = 0 | > 0|error|
+
+on peut tester sur : 
+
+|caractéristique|b1|b2|b3|b4|
+|:--|:--|:--|:--|:--|
+| c1 |date(1,1,1) | date(12,5,2012)  | date(31,12,2020) | date(1,1,1) |
+|  |other(31,12,2020)| other(12,5,2012) | other(1,1,1) |null|
+
+# nextDate() et previousDate()
+
+pour nextDate()
+
+|caractéristique|b1|b2|
+|:--|:--|:--|
+| c1 = dernier jour du mois | vrai | faux |
+| c1 = dernier jour de l'année | vrai |  |
+
+soit : 
+
+|caractéristique|b1|b2|
+|:--|:--|:--|
+| c1 = dernier jour du mois | 31/7/2002 | 25/4/1945 |
+| c1 = dernier jour de l'année | 31/12/2012 |  |
+
+Et pour previousDate()
+
+|caractéristique|b1|b2|
+|:--|:--|:--|
+| c1 = premier jour du mois | vrai | faux |
+| c1 = premier jour de l'année | vrai |  |
+
+soit 
+
+|caractéristique|b1|b2|
+|:--|:--|:--|
+| c1 = premier jour du mois | 1/6/45 | 13/8/1225 |
+| c1 = premier jour de l'année | 1/1/3001 |  |
+
+
+Les caractéristiques `day`, `month` et `year` sont commun au méthodes `isValidDate()`, `nextDate()`, `previousDate()` et `compareTo()`.
+Dans le cas de `year` il est aussi utilisé par `isLeapYear()`
