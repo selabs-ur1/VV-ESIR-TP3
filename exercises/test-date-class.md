@@ -54,8 +54,8 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 # Answer
 ## 1.
 
-# isValidDate()
-Dans le cours on définis le partitionning des dates tel que:
+### isValidDate()
+Dans le cours on définit le partitionnement des dates tel que :
 ![img](/exercises/date_partion_isvalid.png)
 
 On peut donc définir 6 cas de test :
@@ -71,9 +71,9 @@ On peut donc définir 6 cas de test :
 
 
 
-# isLeapYear()
+### isLeapYear()
 
-Cette fois on défini le tableau:
+Cette fois on définit le tableau :
 
 |caractéristique|b1|b2|
 |:--|:--|:--|
@@ -81,7 +81,7 @@ Cette fois on défini le tableau:
 | c2 : years%100 = 0|vrai|faux|
 | c3 : years%400 = 0 |vrai |faux|
 
-Ce qui donne les cas: 
+Ce qui donne les cas : 
 
 |caractéristique|b1|b2|
 |:--|:--|:--|
@@ -89,7 +89,7 @@ Ce qui donne les cas:
 | c2 : years%100 = 0|100|104|
 | c3 : years%400 = 0 |400 ||
 
-# compareTo()
+### compareTo()
 
 |caractéristique|b1|b2|b3|b4|
 |:--|:--|:--|:--|:--|
@@ -102,7 +102,7 @@ On peut tester sur :
 | c1 |date(1,1,1) | date(12,5,2012)  | date(31,12,2020) | date(1,1,1) |
 |  |other(31,12,2020)| other(12,5,2012) | other(1,1,1) |null|
 
-# nextDate() et previousDate()
+### nextDate() et previousDate()
 
 Pour nextDate()
 
@@ -141,21 +141,21 @@ En cherchant une couverture d'au moins 85% du programme on la vérifie avec JaCo
 
 Couverture de test avec les cas précédents :
 
-![converture_de_base](/exercises/date_converture.png)
+![converture_de_base](date_converture.png)
 
 On peut voir que certaines lignes ne sont pas couverte du tout, on ajoute certain test pour augmenter la couverture :  
 
-![couverture_avancée](/exercises/date_coverture_ameliorer.png)
+![couverture_avancée](date_coverture_ameliorer.png)
 
 Il reste un certain nombre de branches non testé mais les 85% sont atteint.
 
-## 4
+## 4.
 On importe PIT à l'aide de Maven et on lance une analyse. PIT génère 89 mutations dont 70 sont tuées par les tests, ce qui représente un score de 79%.
 
-![mutation_de_base](/exercises/date_mutation_79.png)
+![mutation_de_base](date_mutation_79.png)
 
 On peut alors se fixer un objectif d'augmenter le nombre de mutations tuées en ajoutant et en modifiant des tests. En modifiant certaine implémentation et en rajoutant des cas de test on arrive à améliorer le nombre de mutations tuées.
 
-![mutation_ameliore](/exercises/date_mutation_89.png)
+![mutation_ameliore](date_mutation_89.png)
 
 On peut alors définir un seuil minimal de mutations tuées pour conserver des tests utiles.
