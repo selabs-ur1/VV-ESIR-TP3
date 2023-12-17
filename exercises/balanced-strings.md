@@ -26,3 +26,15 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. Le domaine d'entrée correspond à n'importe quelle chaîne de caractères. On partitionne alors le domaine d'entrée :
+- Une chaîne de caractère avec aucun symbole de groupement
+- Une chaîne de caractère avec un ou plusieurs groupements (soit [], soit (), soit {}) et composée d'autres caractères
+- Une chaîne composée avec plusieurs groupements imbriqués et composée d'autres caractères
+- Une chaîne de caractères composée uniquement d'un ou plusieurs groupements corrects
+- Une chaîne de caractères composée uniquement un ou plusieurs groupements incorrects
+
+2. On implémente les différents cas de test associé à un cas de test associé à une partition. On obtient alors une couverture de 100% de cas de test avec le plugin JaCoCo.
+
+3. On écrit de nouveau cas de test afin de faire en sorte d'évaluer les prédicats lorsqu'ils sont vrais et faux. Pour trouver les cas de test, on se base sur l'implémentation de la fonction afin de déterminer les règles que les prédicats vérifient. 
+
+4. En utilisant PIT avec Maven, on obtient un taux de mutation tué de 100%. Cela signifie que l'on détecte bien lorsque le comportement des tests changent et donc qu'ils sont "utiles".

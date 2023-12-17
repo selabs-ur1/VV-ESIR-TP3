@@ -1,0 +1,17 @@
+*.class
+*.css
+*.lst
+*.exec
+*.json
+*.xml
+*.html
+*.gif
+*.csv
+code/tp3-date/target/site/images/external.png
+code/tp3-date/target/site/images/logos/build-by-maven-black.png
+code/tp3-date/target/site/images/logos/build-by-maven-white.png
+code/tp3-date/target/site/images/logos/maven-feather.png
+code/tp3-date/target/site/images/newwindow.png
+code/tp3-date/target/site/jacoco/jacoco-resources/prettify.js
+code/tp3-date/target/site/jacoco/jacoco-resources/sort.js
+code/tp3-date/target/surefire-reports/fr.istic.vv.DateTest.txt
