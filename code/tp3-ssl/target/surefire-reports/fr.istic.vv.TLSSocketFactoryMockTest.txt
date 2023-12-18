@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: fr.istic.vv.TLSSocketFactoryMockTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.697 s <<< FAILURE! - in fr.istic.vv.TLSSocketFactoryMockTest
+fr.istic.vv.TLSSocketFactoryMockTest.typical  Time elapsed: 0.677 s  <<< ERROR!
+java.lang.ClassCastException: class org.mockito.codegen.SSLSocket$MockitoMock$1432940322 cannot be cast to class fr.istic.vv.SSLSocket (org.mockito.codegen.SSLSocket$MockitoMock$1432940322 and fr.istic.vv.SSLSocket are in unnamed module of loader 'app')
+	at fr.istic.vv.TLSSocketFactoryMockTest.typical(TLSSocketFactoryMockTest.java:36)
+
+fr.istic.vv.TLSSocketFactoryMockTest.preparedSocket_NullProtocols  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.ClassCastException: class org.mockito.codegen.SSLSocket$MockitoMock$1432940322 cannot be cast to class fr.istic.vv.SSLSocket (org.mockito.codegen.SSLSocket$MockitoMock$1432940322 and fr.istic.vv.SSLSocket are in unnamed module of loader 'app')
+	at fr.istic.vv.TLSSocketFactoryMockTest.preparedSocket_NullProtocols(TLSSocketFactoryMockTest.java:24)
+

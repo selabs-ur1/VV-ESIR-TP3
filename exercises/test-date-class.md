@@ -53,3 +53,40 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+1.IsValidDate
+|   | b1 | b2 | b3 | b4 | b5 | b6 |
+| :---------------: |:---------------:| :-----:| :-----:| :-----:| :-----:|:-----:|
+| Jour  |   <0 |  0 | >= 1 and <= max(mois,année) | >max(mois,année)| | |
+| Mois |<0 |  0  |   { 1, 3, 5, 7, 8, 10, 12}  | { 1, 3, 5, 7, 8, 10, 12} | 2 | > 12 |
+| Année  | <0 |  0  |   année bissextile  | année commune |  |  |
+  
+IsLeapYear
+|   | b1  | b2 | b3 |
+| :---------------: |:---------------:| :-----:| :-----:|
+| Années   |   Année bissextile       |  Année non bissextile |  <0 |
+  
+  NextDate
+|   | b1          | b2 | b3 |
+| :---------------: |:---------------:| :-----:| :-----:|
+| Date |   31 Décembre      |  31 mois classique  | Date classique |
+  
+  PreviousDate
+|   | b1          | b2 | b3 |
+| :---------------: |:---------------:| :-----:| :-----:|
+| Date |   1er Janvier      |  1er mois classique  | Date classique |
+  
+  CompareTo  
+|  | b1 | b2 | b3  | b4 |
+| :---------------: |:---------------:| :-----:| :-----:|  :-----:|
+| Dates | 2 dates identiques | 2 dates dans le même mois | Même année mais mois différents | Années différentes |
+  
+  
+2. Nous obtenons une courverture de test de 80%. Pour augmenter notre couverture de test, nous avons ajouté des tests pour les NullPointerException dans le cas où la date est null. Nous nous sommes rendu compte que nous n'avions pas testé le cas de changement de jour lors d'une année bissextile, nous avons donc rajouté les cas de test correspondants. Maintenant, notre couverture de test est de 100%.
+
+3. Nous n'avons pas de cas où nous avons plus de 2 opérateurs booléens.  
+  
+4. Après avoir utililsé PIT, nous obtenons une couverture de mutation de 94% avec 4 mutants qui ont survécu. Ce score est dû à la mutation "changed conditional boundary" qui, par exemple, change les '<' en '<='.  
+Exemple : if (year < 1) {return false;} , ici le mutant peut transformer l'opération en : year <= 1.
+En ajoutant des cas de tests pour les utilisations de ces opérateurs nous obtenons un score de 100%.
+
+

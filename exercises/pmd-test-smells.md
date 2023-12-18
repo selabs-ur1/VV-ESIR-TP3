@@ -15,3 +15,44 @@ Include the improved test code in this file.
 
 ## Answer
 
+Parmi les règles présentes dans pmd-documentation, nous avons en avons reconnu plusieurs dont nous avons parlé en cours. Par exemple, il ne faut pas oublier d'utiliser les décorateurs @After et @Before dans les méthodes setUp() et tearDown(), c'est ce que vérifient les règles JUnit4TestShouldUseBeforeAnnotation et JUnit4TestShouldUseAfterAnnotation. La règle DetachedTestCase vérifie qu'il n'y a bien qu'un seul cas de test par bloc @Test, afin de bien savoir quel est le bug si le test ne passe pas.  
+
+A l'aide de la règle DetachedTestCase, nous avons trouvé un cas de test sans le décorateur @Test. Pour éliminer l'erreur, nous avons ajouté ce décorateur.
+~~~
+    @Test
+    public void testConcatenateSingle() {
+        final double[] x = new double[] {0, 1, 2};
+        Assert.assertArrayEquals(x, MathArrays.concatenate(x), 0);
+    }
+
+    
+    public void testConcatenateEmptyArguments() {
+        final double[] x = new double[] {0, 1, 2};
+        final double[] y = new double[] {3};
+        final double[] z = new double[] {};
+        final double[] u = new double[] {0, 1, 2, 3};
+        Assert.assertArrayEquals(u,  MathArrays.concatenate(x, z, y), 0);
+        Assert.assertArrayEquals(u,  MathArrays.concatenate(x, y, z), 0);
+        Assert.assertArrayEquals(u,  MathArrays.concatenate(z, x, y), 0);
+        Assert.assertEquals(0,  MathArrays.concatenate(z, z, z).length);
+    }
+~~~
+~~~
+    @Test
+    public void testConcatenateSingle() {
+        final double[] x = new double[] {0, 1, 2};
+        Assert.assertArrayEquals(x, MathArrays.concatenate(x), 0);
+    }
+
+    @Test
+    public void testConcatenateEmptyArguments() {
+        final double[] x = new double[] {0, 1, 2};
+        final double[] y = new double[] {3};
+        final double[] z = new double[] {};
+        final double[] u = new double[] {0, 1, 2, 3};
+        Assert.assertArrayEquals(u,  MathArrays.concatenate(x, z, y), 0);
+        Assert.assertArrayEquals(u,  MathArrays.concatenate(x, y, z), 0);
+        Assert.assertArrayEquals(u,  MathArrays.concatenate(z, x, y), 0);
+        Assert.assertEquals(0,  MathArrays.concatenate(z, z, z).length);
+    }
+~~~
