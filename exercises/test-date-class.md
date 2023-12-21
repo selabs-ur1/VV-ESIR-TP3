@@ -53,3 +53,26 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+1.
+
+| Characteristics|  Blocks |          |                              |                    |   |    |     |
+|:---------------:|:------:|:--------:|:----------------------------:|:------------------:|:-:|:--:|:---:|
+| Value of year  | <0      | 0        | valid yeap year              | valid common year  |   |    |     |
+| value of month | <0      | 0        | { 1, 3, 5, 7, 8, 10, 12}     | { 4, 6, 9, 11 }    | 2 | >12|     |
+| value of day   | <0      | 0        | >= 1 and <= max(month, year) | > max(month, year) |   |    |     |
+| Date           | null    | valide   |                              |                    |   |    |     |
+
+
+les blocks de chaque methode :
+
+isValideDate : tous les blocks\
+isLeapYear : annee bissextile et annee normal\
+is31Day : ligne value of month\
+nextDate/previousDate : tous les mois et jours valide\
+Compareto :  ligne Date et toutes dates valide
+
+2. Dans cette partie, j'ai écris des tests afin de couvrir les differents blocks de chaque fonction. Apres avoir fais un test de couverture, j'obtiens un score de 93%. Il n'y a donc pas besoin d'ajouter de tests.
+
+3. Dans mon code, je n'ai que deux predicats utilisant plus de 2 booleans et qui ont deja ete couvert par les tests.
+
+4. Apres avoir utilise PIT, j'obtiens un score de mutation de 80%. L'une des plus grosse source de mutant est le faite que les mois alternes entre 30 et 31 sauf pour juillet, aout et fevrier. De ce faite, dans la plupart du temps la condition pour verifier si le mois d'avant possede 31 jours donne le meme resultat lorsque l'on regarde le mois d'apres. Pour le tuer, il suffit rajouter un test en utilisant un mois comme Juillet par exemple. Grace a cela, on obtient maintenant un score de mutation de 84%.
