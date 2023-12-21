@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Date.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp3-date</a> &gt; <a href="index.source.html" class="el_package">fr.istic.vv</a> &gt; <span class="el_source">Date.java</span></div><h1>Date.java</h1><pre class="source lang-java linenums">package fr.istic.vv;
+
+class Date implements Comparable&lt;Date&gt; {
+
+    int m_day;
+    int m_month;
+    int m_year;
+
+<span class="fc" id="L9">    public Date(int day, int month, int year) {</span>
+<span class="fc" id="L10">        this.m_day = day;</span>
+<span class="fc" id="L11">        this.m_month = month;</span>
+<span class="fc" id="L12">        this.m_year = year;</span>
+<span class="fc" id="L13">     }</span>
+
+
+    
+    public static boolean isValidDate(int day, int month, int year) {
+        
+<span class="pc bpc" id="L19" title="1 of 4 branches missed.">        if (day &lt; 1 || month &lt; 1) return false;</span>
+
+<span class="fc bfc" id="L21" title="All 6 branches covered.">        if (month == 2 &amp;&amp; day &gt; 29 &amp;&amp; !isLeapYear(year)){</span>
+<span class="fc" id="L22">            return false;</span>
+        }
+
+<span class="pc bpc" id="L25" title="3 of 4 branches missed.">        if (is31Day(month) &amp;&amp; day &lt;= 31){</span>
+<span class="nc" id="L26">            return true;</span>
+        }
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        else if (day &lt;= 30){</span>
+<span class="fc" id="L29">            return true;</span>
+        }
+
+<span class="fc" id="L32">        return false; </span>
+    }
+
+    public static boolean isLeapYear(int year) { 
+        
+<span class="pc bpc" id="L37" title="1 of 4 branches missed.">        if (year % 400 == 0 &amp;&amp; year % 100 == 0){</span>
+<span class="fc" id="L38">            return true;</span>
+        }
+<span class="pc bpc" id="L40" title="3 of 4 branches missed.">        else if (year % 4 == 0 &amp;&amp; year % 100 != 0){</span>
+<span class="nc" id="L41">            return true;</span>
+        }
+
+<span class="fc" id="L44">        return false; </span>
+    }
+
+    public static boolean is31Day(int month){
+<span class="fc" id="L48">        int[] longMonth = {1,3,5,7,8,10,12};</span>
+
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (int i=0; i&lt;longMonth.length; i++){</span>
+
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            if (longMonth[i] == month){</span>
+<span class="fc" id="L53">                return true;</span>
+            }
+        }
+        
+<span class="fc" id="L57">        return false;</span>
+
+    }
+
+    public Date nextDate() { 
+        
+<span class="pc bpc" id="L63" title="1 of 6 branches missed.">        if (m_month == 2 &amp;&amp; m_day == 29 &amp;&amp; !isLeapYear(m_year)){</span>
+<span class="fc" id="L64">            return new Date(1, 3, m_year);</span>
+        }
+
+<span class="pc bpc" id="L67" title="1 of 4 branches missed.">        if (m_day == 31 &amp;&amp; m_month == 12){</span>
+<span class="fc" id="L68">            return new Date(1, 1, m_year+1);</span>
+        }
+
+<span class="pc bpc" id="L71" title="2 of 8 branches missed.">        if (m_day &lt; 31 &amp;&amp; is31Day(m_month) || m_day &lt; 30 &amp;&amp; !is31Day(m_month)){</span>
+<span class="fc" id="L72">            return new Date(m_day+1, m_month, m_year);</span>
+        }
+
+<span class="fc" id="L75">        return new Date(1, m_month+1, m_year); </span>
+    }
+
+    public Date previousDate() {
+         
+<span class="pc bpc" id="L80" title="1 of 6 branches missed.">        if (m_month == 3 &amp;&amp; m_day == 1 &amp;&amp; !isLeapYear(m_year)){</span>
+<span class="fc" id="L81">            return new Date(29, 2, m_year);</span>
+        }
+
+<span class="fc bfc" id="L84" title="All 4 branches covered.">        if (m_day == 1 &amp;&amp; m_month == 1){</span>
+<span class="fc" id="L85">            return new Date(31, 12, m_year-1);</span>
+        }
+
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        if ( m_day == 1){</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">            if (is31Day(m_month-1)){</span>
+<span class="nc" id="L90">                return new Date(31, m_month-1, m_year);</span>
+            }
+            else {
+<span class="fc" id="L93">                return new Date(30, m_month-1, m_year);</span>
+            }
+        }
+        
+<span class="fc" id="L97">        return new Date(m_day-1, m_month, m_year); </span>
+        }
+
+    public int compareTo(Date other) { 
+        
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (other == null) throw new NullPointerException();</span>
+<span class="fc bfc" id="L103" title="All 6 branches covered.">        if (m_day == other.m_day &amp;&amp; m_month == other.m_month &amp;&amp; m_year == other.m_year){</span>
+
+<span class="fc" id="L105">            return 0;</span>
+        } 
+
+<span class="fc bfc" id="L108" title="All 2 branches covered.">        if (m_year &gt; other.m_year) return 1;</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        if (m_month &gt; other.m_month) return 1;</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        if (m_day &gt; other.m_day) return 1;</span>
+        
+<span class="fc" id="L112">        return -1;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -26,3 +26,23 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. 
+| Characteristics   |      Blocks |   |         |
+|-----------------|:-------------:|:-:|:-------:|
+| String est nulle|  true |  false    |         |
+| String est vide |  true |  false    |         |
+| Un charactere   |   (   |     {     |  [      |
+| balancer        |   ()  |     {}    |  []     |
+| encercler     |  (()) |    ({})   |  ([[]]) |
+| emmeler         |  ([)] |    {([)}] | 
+| addition        |  ()() |  ([]){()} |
+| aleatoire       |  (}   |   ](}({   |
+
+2.
+Apres avoir lancer build le projet maven avec Jacoco, j'obtiens un test coverage de 100%. Il n'y a donc pas besoin de rajouter des tests, la fonction est même surement surtester.
+
+3.
+Il y a dans mon code un predicat qui utilise 3 boolean. Cependant, je possède déjà des tests satisfaisant le Base Choice coverage puisque chacun de ces boolean est tester individuellement avant d'être tester en combinaison.
+
+4.
+Apres avoir lance PIT, j'obtiens un score de mutation de 100%. Ma suite de test est donc suffisamment complète et il est inutile de la tester plus.
