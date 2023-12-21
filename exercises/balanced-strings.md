@@ -8,7 +8,25 @@ Implement the following method:
 
 ```java
 public static boolean isBalanced(String str) {
-    ...
+    Stack<Character> stack = new Stack<>();
+
+    for (char ch : str.toCharArray()) {
+        if (ch == '(' || ch == '[' || ch == '{') {
+            stack.push(ch);
+        } else if (ch == ')' && !stack.isEmpty() && stack.peek() == '(') {
+            stack.pop();
+        } else if (ch == ']' && !stack.isEmpty() && stack.peek() == '[') {
+            stack.pop();
+        } else if (ch == '}' && !stack.isEmpty() && stack.peek() == '{') {
+             stack.pop();
+        } else {
+             // Unmatched closing bracket or invalid character
+            return false;
+        }
+    }
+
+    // If the stack is empty, all opening brackets were matched
+    return stack.isEmpty();
 }
 ```
 
@@ -25,4 +43,39 @@ Write below the actions you took on each step and the results you obtained.
 Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to complete this exercise.
 
 ## Answer
+
+1. ### Input Space Partitioning :
+
+>a. Empty String:
+>* **Characteristics :** Empty input string.
+>* **Partition :** ` "" `
+>
+>b. Balanced Strings:
+>* **Characteristics :** Strings with correctly matched grouping symbols.
+>* **Partition :** ` {} ; [] ; () ; {[]} ; [{()}] ; {{}}[[]]() ` 
+>c. Unbalanced Strings:
+>* **Characteristics :** Strings with incorrectly matched or missing grouping symbols.
+>* **Partitions :** ` }{ ; ][ ; ([)] ; { ; {{]}} `
+
+2. ### Statement Coverage:
+
+>a. Test Cases for Empty String: `Expected: true`
+>* isBalanced("")
+>
+>b. Test Cases for Balanced Strings: `Expected: true`
+>* isBalanced("{}")
+>* isBalanced("[]")
+>* isBalanced("()")
+>* isBalanced("{[]}")
+>* isBalanced("[{()}]")
+>* isBalanced("{{}}[[]]()")
+>
+>c. Test Cases for Unbalanced Strings: `Expected: false`
+>* isBalanced("}{")
+>* isBalanced("][")
+>* isBalanced("([)]")
+>* isBalanced("{")
+>* isBalanced("{{]}}")
+
+
 

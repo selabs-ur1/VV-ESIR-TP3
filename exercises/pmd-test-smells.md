@@ -15,3 +15,19 @@ Include the improved test code in this file.
 
 ## Answer
 
+> Testing Happy Path only:
+>* UnnecessaryBooleanAssertion.md
+>
+> Eager test ; Piggyback:
+>* JUnitTestContainsTooManyAsserts
+>
+> Conditional test logic:
+>* UseAssertEqualsInsteadOfAssertTrue.md
+>* UseAssertNullInsteadOfAssertTrue.md
+>* UseAssertSameInsteadOfAssertTrue.md
+>* UseAssertTrueInsteadOfAssertEquals.md
+
+> I executed UnnecessaryBooleanAsertion.md and JUnitTestContainsTooManyAsserts on the *Apache Commons Collections* project and in both cases there is no test smells detected. Below, you will find the output of the execution of these two rules on *Apache Commons Collections*:
+>
+> <img width="1579" alt="image" src="https://github.com/ZieAmara/VV-ESIR-TP3/assets/90223980/b901bae0-8cb7-4a06-a9ff-d6d2e22f9b2a">
+
