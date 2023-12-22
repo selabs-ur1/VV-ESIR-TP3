@@ -53,3 +53,121 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+### 1.
+
+#### Caractéristiques et blocs
+
+`isValidDate(int day, int month, int year)`
+
+##### Caractéristiques :
+
+Année :
+Normalement toujours valide.
+
+Mois :
+Mois valide (ex. : 1, 6, 12) ;
+Mois invalide (ex. : 0, 13)
+
+Jour :
+Jour valide pour le mois (ex. : 1, 15, 28) ;
+Jour invalide pour le mois (ex. : 0, 32)
+
+Année bissextile :
+Année bissextile (février a 29 jours) ;
+Année non bissextile
+
+##### Blocs :
+
+Mois valide, jour valide ;
+Mois invalide, jour valide ;
+Mois valide, jour invalide ;
+Mois invalide, jour invalide ;
+
+`isLeapYear(int year)`
+
+##### Caractéristiques :
+
+Année :
+Année bissextile ;
+Année non bissextile ;
+
+##### Blocs :
+
+Année bissextile ;
+Année non bissextile
+
+`nextDate()`
+
+##### Caractéristiques :
+
+Date actuelle :
+Date au milieu du mois ;
+Dernier jour du mois ;
+Scénarios d'année bissextile et non bissextile ;
+
+##### Blocs :
+
+Milieu du mois, non dernier jour ;
+Milieu du mois, dernier jour ;
+Février dans une année bissextile ;
+Février dans une année non bissextile ;
+Fin des mois (sauf février) dans une année non bissextile ;
+Fin des mois (sauf février) dans une année bissextile ;
+
+`previousDate()`
+
+##### Caractéristiques :
+
+Date actuelle :
+Date au milieu du mois ;
+Premier jour du mois ;
+Scénarios d'année bissextile et non bissextile
+
+##### Blocs :
+
+Milieu du mois, non premier jour ;
+Milieu du mois, premier jour ;
+Février dans une année bissextile ;
+Février dans une année non bissextile ;
+Début des mois (sauf février) dans une année non bissextile ;
+Début des mois (sauf février) dans une année bissextile ;
+
+`compareTo(Date other)`
+
+##### Caractéristiques :
+
+Comparaison des dates :
+Date avant l'autre ;
+Date après l'autre ;
+Date identique à l'autre ;
+
+##### Blocs :
+
+Date avant l'autre ;
+Date après l'autre ;
+Date identique à l'autre ;
+
+#### Caractéristiques communes à plusieurs méthodes :
+
+Année : Année bissextile, année non bissextile
+
+Mois : Mois valide, mois invalide
+
+Jour : Jour valide, jour invalide
+
+#### 2.
+
+En utilisant la fonctionnalité de coverage d'IntelliJ, avec les tests créés selon ce design, nous avons obtenu une couverture de 100% des classes (logique, il n'y en a qu'une), 100% des méthodes et 86% des lignes.
+
+#### 3. 
+
+Nous l'avons déjà fait en question 1, mais nous avons séparés tous les cas possibles pour trouver tous les blocs. Nous "figeons" toutes les caractéristiques sauf une, puis nous faisons varier la dernière. Nous faisons cela pour toutes les caractéristiques, ce qui permet d'avoir une bien meilleure couverture.
+
+#### 4.
+
+PIT indique 55 mutants créés, dont 39 tués, ce qui donne un mutation score de 70,91. Ces mutants nous permettent d'estimer la qualité de nos tests, et le but est qu'on en est le plus possible de tués. Afin d'améliorer la qualité de nos tests, nous rajoutons dans les tests des assertions. Par exemple, un mutant subsistait dans le test de `isValidDate`, nous avions `changed conditional boundary → SURVIVED`d'indiqué sur le rapport PIT. Après avoir rajouté des assertions avec des valeurs proches des limites, nous passons à `changed conditional boundary → KILLED` et donc à 40 mutants tués.
+Nous avons aussi éliminé des mutants du côté de `isLeapYear`, en rajoutant d'autres assertions.
+
+## PS :
+
+Les codes sont trouvables dans le dossier code puis dans le dossier correspondant à la question.

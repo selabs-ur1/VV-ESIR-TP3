@@ -26,3 +26,24 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+| Caractéristique           | Partition                                     | Explication                                        |
+|---------------------------|-----------------------------------------------|----------------------------------------------------|
+| Chaîne Vide               | `""`                                          | Tester avec une chaîne vide pour assurer la correction.|
+| Parenthèses Équilibrées   | `"{}"`, `"[()]"`, `"{[()]}"`, `"((()))"`     | Tester différentes combinaisons de parenthèses équilibrées.|
+| Parenthèses Non Équilibrées| `"{[}"`, `"(())]"`, `"(()))"`                | Tester différentes combinaisons de parenthèses non équilibrées.|
+| Parenthèses Mélangées     | `"{[()]}", "([)]"`                           | Tester des expressions avec des parenthèses mélangées.|
+| Autres Caractères         | `"abc"`, `"123"`, `"abc(def)123"`             | Inclure des caractères alphanumériques et des symboles.|
+| Parenthèses Emboîtées      | `"({})"`, `"{[()]}"`, `"((()))"`             | Tester avec des expressions contenant des parenthèses emboîtées.|
+
+
+2. On remarque que nous avons réalisé un ensemble de 17 tests, chacun évaluant une des caractéristiques du tableau ci-dessus. Il est à noter que, parfois, pour une même caractéristique, plusieurs tests sont réalisés (par exemple, pour tester de nouvelles combinaisons). Nous avons ainsi couvert toutes les caractéristiques identifiées, ce qui nous permet de considérer avoir une couverture élevée. En ajoutant Jacoco pour l'évaluation, on observe un taux de couverture de 93 %.
+   
+![img_1.png](img_1.png)
+
+3. On remarque qu'à trois reprises, nous avons plus de deux booléens dans un if statement. Néanmoins, il est important de noter que ces lignes ont bien été testées. Ainsi, nous n'avons pas besoin de les tester davantage.
+   
+4.  On constate ici la création de 33 tests, dont 19 concernent des mutations. Sur ces 19 mutations, 18 ont été éliminées avec succès, atteignant ainsi un taux de 95 %. C'est un résultat très positif. Cependant, il est à noter que nous n'avons pas réussi à améliorer davantage ce score.
+
+ ![img.png](img.png)
+
+L'ensemble des codes peuvent être trouver dans le dossier code/tp3-balanced-strings
