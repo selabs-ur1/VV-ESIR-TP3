@@ -1,7 +1,5 @@
 package fr.istic.vv;
 
-import java.time.LocalDate;
-
 class Date implements Comparable<Date> {
 
     private final int day;
@@ -100,5 +98,9 @@ class Date implements Comparable<Date> {
 
         Date other = (Date) obj;
         return this.day == other.day && this.month == other.month && this.year == other.year;
+    }
+
+    public int getDay() {
+        return day;
     }
 }

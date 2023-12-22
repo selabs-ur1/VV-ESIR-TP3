@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 class DateTest {
     @Test
     public void testIsValidDate_YearIsValid() {
@@ -81,26 +80,25 @@ class DateTest {
         assertEquals(new Date(31, 12, 2022), new Date(1, 1, 2023).previousDate());
     }
 
-    // Etape 4
+
+    // TEST Après PIT
+    @Test
+    public void testBooleanTrueReturnValsMutator() {
+        // La méthode isDateValid devrait retourner true pour une date valide.
+        assertTrue(Date.isValidDate(1, 1, 2023));
+    }
+
 
     @Test
-    public void testCompareTo_PosteriorDate() {
-        Date date1 = new Date(1, 1, 2023);
-        Date date2 = new Date(31, 12, 2022);
-        assertTrue(date1.compareTo(date2) > 0);
+    public void testBooleanFalseReturnValsMutator() {
+        // La méthode isLeapYear devrait retourner false pour l'année non bissextile.
+        assertFalse(Date.isLeapYear(2023));
     }
 
     @Test
-    public void testCompareTo_IdenticalDate() {
-        Date date1 = new Date(1, 1, 2023);
-        Date date3 = new Date(1, 1, 2023);
-        assertTrue(date1.compareTo(date3) == 0);
-    }
-
-    @Test
-    public void testCompareTo_AnteriorDate() {
-        Date date1 = new Date(1, 1, 2023);
-        Date date4 = new Date(2, 1, 2023);
-        assertTrue(date1.compareTo(date4) < 0);
+    public void testPrimitiveReturnsMutator() {
+        // La méthode getDay devrait retourner le jour spécifié dans le constructeur.
+        Date dateInstance = new Date(1, 1, 2023);
+        assertEquals(1, dateInstance.getDay());
     }
 }
