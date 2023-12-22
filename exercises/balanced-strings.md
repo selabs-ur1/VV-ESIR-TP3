@@ -26,3 +26,52 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+Voici les tableaux que l'on obtient à l'aide du Input Space Partitioning : 
+![graphe](./exo3_graphe.png)
+
+
+Voici les tests que l'on a créé à partir de cela : 
+
+'''java
+@Test
+    void testStringVide() {
+        assertTrue(StringUtils.isBalanced(""));
+    }
+
+    @Test
+    void testOuvranteFermante() {
+        assertTrue(StringUtils.isBalanced("()"));
+        assertTrue(StringUtils.isBalanced("[]"));
+        assertTrue(StringUtils.isBalanced("{}"));
+    }
+
+    @Test
+    void testOuvranteFermanteImbriquees() {
+        assertTrue(StringUtils.isBalanced("{()}"));
+        assertTrue(StringUtils.isBalanced("[{}]"));
+        assertTrue(StringUtils.isBalanced("([])"));
+        assertTrue(StringUtils.isBalanced("{[()]}"));
+    }
+
+    @Test
+    void testManqueOuvranteOuFermante() {
+        assertFalse(StringUtils.isBalanced("("));
+        assertFalse(StringUtils.isBalanced("]"));
+        assertFalse(StringUtils.isBalanced("{{"));
+    }
+
+    @Test
+    void testPasBonneOuvranteOuFermante() {
+        assertFalse(StringUtils.isBalanced("{]"));
+        assertFalse(StringUtils.isBalanced("(]"));
+        assertFalse(StringUtils.isBalanced("[)"));
+        assertFalse(StringUtils.isBalanced("{(})"));
+    }
+
+    @Test
+    void testAvecCaracteres() {
+        assertTrue(StringUtils.isBalanced("{abc[123](xyz)}"));
+        assertFalse(StringUtils.isBalanced("{a[b(c)d]e}f)"));
+    }
+'''
+
