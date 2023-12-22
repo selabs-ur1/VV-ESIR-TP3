@@ -53,3 +53,51 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+
+1. Use input space partitioning
+
+In order to select a good test set, we used the input space partitioning method.
+The reference we are using for this kind of problem is https://oscarlvp.github.io/vandv-classes/#_input_space_partitioning, and because the example used in this document is exactly the same as the one we are trying to solve, we will use the same characteristics and blocks.
+
+|Characteristics    |   |Blocks |       |       |       |       |       |
+|-------------------|:--|:------|:------|:------|:------|:------|:------|
+|                   |   |b1     |b2     |b3     |b4     |b5     |b6     |
+|q1                 | Value of year |  <0   |  0   |  valid leap year   |valid common year | NA | NA
+|q2                 | Value of month |  <0   |  0   |  { 1, 3, 5, 7, 8, 10, 12}   |{ 4, 6, 9, 11 } | 2 | > 12
+|q3                 | Value of day |  <0   |  0   |  >= 1 and <= max(month, year)   |> max(month, year) | NA | NA
+
+The block B1 correspond to a negative value in the inputs. </br>
+The block B2 correspond to a zero value in the inputs. </br>
+The block B3 correspond to a valid leap year. </br>
+The block B4 correspond to a valid common year. </br>
+The block B5 correspond to February, which has 28 days in common years and 29 days in leap years. </br>
+The block B6 correspond to a value greater than the maximum value of the month or year. </br>
+ </br>
+
+The Q1 characteristic correspond to the value of the year. </br>
+The Q2 characteristic correspond to the value of the month. </br>
+The Q3 characteristic correspond to the value of the day. </br>
+ </br>
+
+Each of these characteristics are relative to more than one method, because they are parameters of several methods and influence the result of those methods. </br>
+ </br>
+
+Then we created our tests for each characteristic by following the above table, for methods using that characteristic. </br>
+ </br> 
+
+2.
+We reused the jacoco plugin from the previous exercise to evaluate the statement coverage.
+For the designed tests, the coverage is only of 46%, because 114 of 214 instructions are missed. </br>
+This was because we at first forgot to apply the partitionning to every function needing it and only did it for one of them. </br>
+ </br>
+ After correcting our partitionning, our coverage is now of 100% for the statements, without having to do any other test. </br>
+
+ 3.
+ By checking the jacoco report, we can see that the coverage is of 100% for the branches (with 0 missed branches). </br>
+It shows that we are pretty close to satisfying the Base Choice Coverage. However, we are missing some tests, for example for the isLeap year function wich has a predicate with 3 boolean operators. </br> 
+
+ 4.
+ By using the command `mvn clean install` and `mvn org.pitest:pitest-maven:mutationCoverage`, we can see that our mutation score is of 91% with 41 of 45 mutations killed. </br>
+We added boundary tests in the nextDate and previousDate functions in order to cover the missed mutations. </br>
+
+For these functions, ```<``` were replaced by ```<=```, so it was needed to test specific values for the boundary tests. </br>
