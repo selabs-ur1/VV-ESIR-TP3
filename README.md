@@ -14,3 +14,6 @@ You can realize this lab by group of 1 or 2.
 ## Deliverable and evaluation
 
 We will mark this lab. You need to fork this repository and to submit a pull request with the answers written in the dedicated sections (deadline December 22nd 2023, 23:59).
+
+
+Ce TP a été effectué par Hywel MATHIEU et Guillaume PINAULT.

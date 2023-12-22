@@ -53,3 +53,93 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+
+### 1. Input Space Partitioning
+
+#### isValidDate
+
+Cette méthode prend en paramètre trois entiers qui représentent le jour, le mois et l'année et retourne un booléen qui
+indique si la date est valide ou non.
+
+Les caractéristiques de cette méthode sont les suivantes :
+
+| Caractéristique                                              | b1   | b2             |
+|--------------------------------------------------------------|------|----------------|
+| Jour en février dans une année bissextile                    | 1-29 | ]-∞;1[∪]29;+∞[ |
+| Jour en février dans une année non bissextile                | 1-28 | ]-∞;1[∪]28;+∞[ |
+| Jour en avril, juin, septembre et novembre                   | 1-30 | ]-∞;1[∪]30;+∞[ |
+| Jour en janvier, mars, mai, juillet, août, octobre, décembre | 1-31 | ]-∞;1[∪]31;+∞[ |
+| Mois                                                         | 1-12 | ]-∞;1[∪]12;+∞[ |
+| Année                                                        | N    | Aucun          |
+
+#### isLeapYear
+
+Cette méthode prend en paramètre un entier qui représente l'année et retourne un booléen indiquant si l'année est
+bissextile ou non.
+
+Les caractéristiques de cette méthode sont les suivantes :
+
+| Caractéristique  | b1     | b2     |
+|------------------|--------|--------|
+| Année bissextile | oui    | non    |
+| Année            | [1;+∞[ | ]-∞;1[ |
+
+#### nextDate
+
+Cette méthode prend en paramètre une date et retourne une nouvelle date qui correspond à la date du jour suivant.
+
+Les caractéristiques de cette méthode sont les suivantes :
+
+| Caractéristique                                              | b1             | b2     | b3  |
+|--------------------------------------------------------------|----------------|--------|-----|
+| Jour en février dans une année bissextile                    | ]-∞;1[∪]29;+∞[ | 1-28   | 29  |
+| Jour en février dans une année non bissextile                | ]-∞;1[∪]28;+∞[ | 1-27   | 28  |
+| Jour en avril, juin, septembre et novembre                   | ]-∞;1[∪]30;+∞[ | 1-29   | 30  |
+| Jour en janvier, mars, mai, juillet, août, octobre, décembre | ]-∞;1[∪]31;+∞[ | 1-30   | 31  |
+| Mois                                                         | ]-∞;1[∪]12;+∞[ | 1-11   | 12  |
+| Année                                                        | ]-∞;1[         | [1;+∞[ |     |
+
+#### previousDate
+
+Cette méthode prend en paramètre une date et retourne une nouvelle date qui correspond à la date du jour précédent.
+
+Les caractéristiques de cette méthode sont les suivantes :
+
+| Caractéristique                                              | b1             | b2   | b3     |
+|--------------------------------------------------------------|----------------|------|--------|
+| Jour en février dans une année bissextile                    | ]-∞;1[∪]29;+∞[ | 2-29 | 1      |
+| Jour en février dans une année non bissextile                | ]-∞;1[∪]28;+∞[ | 2-28 | 1      |
+| Jour en avril, juin, septembre et novembre                   | ]-∞;1[∪]30;+∞[ | 2-30 | 1      |
+| Jour en janvier, mars, mai, juillet, août, octobre, décembre | ]-∞;1[∪]31;+∞[ | 2-31 | 1      |
+| Mois                                                         | ]-∞;1[∪]12;+∞[ | 2-12 | 1      |
+| Année                                                        | ]-∞;1[         | 1    | ]1;+∞[ |
+
+#### compareTo
+
+Cette méthode prend en paramètre une date et retourne un entier qui indique si la date est antérieure, égale ou
+postérieure à la date passée en paramètre.
+
+Les caractéristiques de cette méthode sont les suivantes :
+
+| Caractéristique                                         | b1         | b2    | b3         |
+|---------------------------------------------------------|------------|-------|------------|
+| Relation de la date passée en paramètre avec notre date | supérieure | égale | inférieure |
+| Date passée en paramètre est null                       | oui        | non   |            |
+
+### 2. Logic Coverage
+
+Avec les tests suivants, on obtient une couverture de 96%.
+On peut voir que c'est la fonction `compareTo` que nous n'avons pas assez testé.
+On ajoute un cas où l'année est différente et un cas où le mois est différent.
+Avec ces deux cas, on obtient une couverture de 100%.
+
+### 3. Base Choice Coverage
+
+Avec notre couverture de tests de 100%, il n'y aucun prédicat incluant plus de deux booléens qui n'a pas été testé.
+
+### 4. Mutation Testing
+
+On utilise l'extension IntelliJ PITest pour tester les mutations, et on obtient un score de 84%.
+![img.png](img.png)
+
+Même après presque une heure de tentatives diverses pour débusquer d'autres mutants, nous n'avons pas réussi à améliorer notre score final, qui reste de 84%.

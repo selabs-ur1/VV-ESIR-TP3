@@ -26,3 +26,42 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. On peut repérer deux partitions qui correspondent aux deux sorties possibles :
+
+- `true` si la chaîne est bien équilibrée (ex: `()`)
+- `false` si la chaîne n'est pas équilibrée (ex: `)(`)
+
+2. Avec ces deux tests, on obtient une couverture de 69% des lignes.
+
+On ajoute un nouveau test qui utilise toutes les parenthèses :
+
+```java
+class StringUtilsTest {
+  @Test
+  void testBalanced2() {
+    assertTrue(StringUtils.isBalanced("({[]})"));
+  }
+}
+```
+
+On obtient alors une couverture de 100% des lignes.
+
+3. Nous n'avons pas de condition avec plus de deux opérateurs booléens.
+
+
+
+
+4. On obtient un score de 88% avec les tests précédents.
+   On a un mutant vivant qui correspond à : "replaced boolean return with true" (37).
+   Ce mutant vivant nous indique que nos tests ne couvrent pas le cas où le stack n'est pas vide à la fin de l'exécution de
+   la méthode.
+   On rajoute donc un test où le stack n'est pas vide :
+
+```java
+class StringUtilsTest {
+  @Test
+  void testLength1() {
+    assertFalse(StringUtils.isBalanced("("));
+  }
+}
+```
