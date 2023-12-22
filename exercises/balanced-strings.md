@@ -26,3 +26,31 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+## Cas de Test
+
+Des cas de test complets sont fournis pour chaque partition de l'espace d'entrée afin de couvrir différents scénarios.
+
+- **Chaîne Vide :**
+  - Entrée : ""
+  - Sortie Attendue : true
+
+- **Symbole Unique :**
+  - Entrées : "{", "[", "(", "}", "]", ")"
+  - Sortie Attendue : false
+
+- **Chaîne Équilibrée avec un Seul Type de Symboles :**
+  - Entrées : "{[]}", "()", "{[()()]}", ...
+  - Sortie Attendue : true
+
+- **Chaîne Déséquilibrée avec un Seul Type de Symboles :**
+  - Entrées : "{]", "([)", "}(", ...
+  - Sortie Attendue : false
+
+- **Symboles de Types Mixtes - Équilibrée :**
+  - Entrées : "{}", "[{()}]", ...
+  - Sortie Attendue : true
+
+- **Symboles de Types Mixtes - Déséquilibrée :**
+  - Entrées : "{[()]}", "{]}", ...
+  - Sortie Attendue : false
+
