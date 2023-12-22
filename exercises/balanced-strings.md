@@ -26,3 +26,7 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. Pour cette méthode, nous avons seulement un paramètre (`String str`), nous n'aurons donc pas de produit cartésien à réaliser sur les inputs. Nous avons plusieurs valeurs d'entrée qui sont pertinentes à utiliser : une chaîne vide, une chaîne de caractères alphanumériques, une chaîne composée d'un seul symbole ouvrant, une chaîne avec des symboles désequilibrés et enfin, une chaîne avec des symboles équilibrés.
+2. Après avoir observé la couverture de test, nous pouvons observer qu'avec nos tests précédemment définis, il nous manque un test lorsque nous avons uniquement un caractère fermant. Après avoir rajouté ce test, le programme est couvert à 100%.
+3. Nos différents tests satisfont bien le *Base Choice Coverage*, même en faisant varier une partition, ils passent quand même à 100%.  
+4. Après avoir lancé un test de mutation avec PIT, nous avons 19 mutants tués sur 19 mutants créés, donc une *Mutation Strength* de 100%, nous avons également un *Test Strength* de 100%.

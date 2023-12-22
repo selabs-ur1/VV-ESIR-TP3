@@ -39,7 +39,17 @@
                         <version>0.12</version>
                     </dependency>
                 </dependencies>
+
+                <configuration>
+                    <targetClasses>
+                        <param>fr.istic.vv.Date</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>fr.istic.vv.DateTest</param>
+                    </targetTests>
+                </configuration>
             </plugin>
+
         </plugins>
     </build>
 
