@@ -14,4 +14,13 @@ Discuss the test smell you found with the help of PMD and propose here an improv
 Include the improved test code in this file.
 
 ## Answer
+La règle `JUnitTestContainsTooManyAsserts` détecte le bad smell `Assertion roulette`, où plusieurs assertions sont insérées dans le test. Dans le cas d'un echec, il est difficile de savoir quelle assertion est à l'origine du problème.
+La règle `UnnecessaryBooleanAssertion` correspond au pattern Useless Asserts. Cela détecte les assertions avec des booléens type `AssertTrue(true)`.
+Les règles type `UseAssertTrueInsteadOfAssertEquals` ou `UseAssertSameInsteadOfAssertTrue` détecte quand le mauvais type d'assertion est utilisé. Par exemple au lieu de `assertTrue(a != null)`, il vaut mieux faire `assertNotNull(a)`.
+
+Nous avons utilisé la règle `JUnit4SuitesShouldUseSuiteAnnotation` et nous avons obtenu un résultat dans le fichier GuavaTestlibTest ligne 56: 
+```java 
+public static Test suite() {...}
+```
+Avec JUnit3, créer une méthode de teste nommée suite() permettait d'indiquer une suite de tests. Cependant depuis JUnit4, il doit y avoir le décorateur : @RunWith(Suite.class) au dessus du test. 
 
