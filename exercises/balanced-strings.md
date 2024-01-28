@@ -7,8 +7,66 @@ For example: `{[][]}({})` is balanced, while `][`, `([)]`, `{`, `{(}{}` are not.
 Implement the following method:
 
 ```java
-public static boolean isBalanced(String str) {
-    ...
+public class Balance {
+
+    public static boolean isBalanced(String str)throws IllegalArgumentException {
+        ArrayList<Character> tmp = new ArrayList<Character>();
+        if(str==null) {
+            throw new IllegalArgumentException("String cannot be null");
+        }
+
+        Iterator<Character> it = str.chars().mapToObj(c -> (char) c).iterator();
+
+        while (it.hasNext()) {
+            switch (it.next()) {
+
+                case '{':
+                    tmp.add('{');
+                    break;
+
+                case '[':
+                    tmp.add('[');
+                    break;
+
+                case '(':
+                    tmp.add('(');
+                    break;
+
+                case '}':
+
+                    if (!tmp.isEmpty() && tmp.get(tmp.size()-1).equals('{')) {
+                        tmp.remove(tmp.size()-1);
+
+                    } else {
+                        return false;
+                    }
+                    break;
+
+                case ']':
+
+                    if (!tmp.isEmpty() && tmp.get(tmp.size()-1).equals('[')) {
+                        tmp.remove(tmp.size()-1);
+
+                    } else {
+                        return false;
+                    }
+                    break;
+
+                case ')':
+
+                    if (!tmp.isEmpty() &&tmp.get(tmp.size()-1).equals('(')) {
+                        tmp.remove(tmp.size()-1);
+
+                    } else {
+                        return false;
+                    }
+                    break;
+
+            }
+        }
+        return tmp.isEmpty();
+    }
+
 }
 ```
 
@@ -26,3 +84,28 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+| Characteristics    | Block 1 | Block 2                  | Block 3                  | Block 4                  | Block 5           |
+|--------------------|---------|--------------------------|--------------------------|--------------------------|-------------------|
+| str (Input String) | ""      | String with { (balanced) | String with [ (balanced) | String with ( (balanced) | String unbalanced |
+
+2. The test cases don't contain null case. We should add a test case with a null string.
+3. Our domain is the set of Strings of length 0 to infinity. The blocks are defined by the conditions (if, case, while...). In this method, there are 10 blocks.
+The first partition is when we don't enter in `while` at all. It corresponds to an empty string.
+The three next partitions concern the following symbols `{`, `[`, `(`. They are the opening symbols of a group. The next six concern what happens when we reach closing symbols.
+If the string is balanced so far, we keep going, otherwise, we break.
+
+Test cases:
+
+ - null
+ - ""
+ - "{"
+ - "("
+ - "["
+ - "]"
+ - "}"
+ - ")"
+ - "{}[]"
+ - "{()}"
+
+4. 20 mutations has been fenerated and 17 where killed. It correspond to a coverage of 85%. By adding a test case with 
+random characters (not only {([])}), the coverage increased up to 100%.
