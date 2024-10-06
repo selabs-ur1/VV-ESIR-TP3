@@ -64,7 +64,7 @@ Values for the isValidDate method.
 | day   | < 0 // error | = 0 // error | Between 1 and the max of the month                             | Superior of the max of the month          |            |               |
 
 By implementing those tests, we have this score.
-![img_1.png](img_1.png)
+![../img/img_1.png](../img/img_1.png)
 
 It is not a lot, but we can improve it by testing other methods.
 
@@ -75,7 +75,7 @@ Values for the isLeapYear method.
 |-------|-------|-------|-----|-------|
 | year  | / 400 | / 100 | / 4 | other |                                                                                                                                                               |
 
-![img_2.png](img_2.png)
+![../img/img_2.png](../img/img_2.png)
 
 We improved the result, but not by a lot. This is normal as there is not a lot of cases.
 
@@ -87,7 +87,7 @@ Values for the compareTo method.
 | month | Date inferior by its month | Date superior by its month |              |           |
 | day   | Date inferior by its day   | Date superior by its day   | equals dates | date null |
 
-![img_3.png](img_3.png)
+![../img/img_3.png](../img/img_3.png)
 
 Way better, but there is 2 method left, so it can be improved.
 
@@ -98,6 +98,6 @@ Values for the previousDate And nextDate methods. (it is the same but reversed)
 | nextDate     | day < max day of the month   | day = max day of the month   | day = max day of the year   | day = max day of the year -1  |
 | previousDate | day > first day of the month | day = first day of the month | day = first day of the year | day = first day of the year 1 |
 
-![img_4.png](img_4.png)
+![../img/img_4.png](../img/img_4.png)
 
 Finally, a great coverage. There are still 3 mutants alive that could be killed during the test suite. But since we have over 80% of coverage, we can accept that it is enough.
