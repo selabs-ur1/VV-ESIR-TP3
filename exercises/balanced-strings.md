@@ -47,3 +47,14 @@ We can define the partition blocks in a table. (true if the expression is balanc
 | Block 1  | Short :<br>`` `` : True<br>``(``: False<br>``{}`` : True<br>``[)]``: False| One :<br>``{}``: True<br>``()``: True<br>``[[]``: False<br>``{}{``: False              | Only opening :<br>``(``: False<br>``({``: False<br>``({[``: False<br>``({([``: False | Just them :<br>``abc`` : True<br>``123``: True<br>``1a2b`` : True<br>``a4-5y`` : True                |
 | Block 2  | Normal :<br>``(())`` : True<br>``{[()]}`` : True <br>``[({}]``: False<br>``{[[]}``: False                         | Two :<br>``()[]`` : True<br>``({})`` : True<br>``[{]}``: False<br>``([)``: False         | Only closing :<br>``)``: False<br>``)}``: False<br>``)}]``: False<br>``)})]``: False | Not only just them :<br>``(a)bc`` : True<br>``a{bc}`` : True<br>``(a(bc``: False<br>``a{b]c}``: False |
 | Block 3  | Long :<br>``((()))()[]`` : True<br>``{[()()]}`` : True<br>``{[()(})]}``: False<br>``{[[()()]}``: False | Three :<br>``()[]{}`` : True<br>``[{()}]`` : True<br>``([})``: False<br>``{[(])``: False |                                                 |                                                                  |
+
+
+### 2.
+
+### 3.
+
+### 4. Verifaction of our test suite with PiTest
+
+![img.png](img.png)
+
+The results speak for themselves. The test suite is solid. As we can see, all the mutants were killed during the tests. The only problem we can find is that we have one line not covered out of twelve.

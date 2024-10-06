@@ -56,12 +56,21 @@ public void testUnimplementedFeature() {
 - To indicate that we enter in a condition that should never occur, for example :
 
 ``` java
+public Object obj;
+
+@Before
+public void setUp() {
+    // Do some set up
+    obj = new Object();
+}
+
 @Test
-public void testUnexpectedCondition() {
-    int result = someMethod();
-    if (result < 0) {
-        fail("Result should never be negative");
-    }
+public void testObjectManipulation() {
+    if(obj == null) {
+        fail("obj should not be null");
+     }
+
+    // Do some other valuable testing
 }
 ```
 
