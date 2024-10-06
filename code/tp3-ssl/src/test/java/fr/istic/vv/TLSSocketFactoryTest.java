@@ -45,9 +45,11 @@ public class TLSSocketFactoryTest {
             public String[] getEnabledProtocols() {
                 return shuffle(new String[]{"SSLv3", "TLSv1"});
             }
+
+            // verify the value, if the method is called, but if it is never called, it won't throw an error
             @Override
             public void setEnabledProtocols(String[] protocols) {
-                assertTrue(Arrays.equals(protocols, new String[] {"TLSv1.2", "TLSv1.1", "TLSv1", "SSLv3" }));
+                assertArrayEquals(protocols, new String[]{"TLSv1.2", "TLSv1.1", "TLSv1", "SSLv3"});
             }
         });
     }
