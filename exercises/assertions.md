@@ -28,7 +28,7 @@ String actual = new String("hello");
 assertEquals(expected, actual); // This passes because the content is the same
 ```
 
-- ``assertSame`` : verify if two objects are the same according to their reference.
+- ``assertSame`` : verify if two objects are the same according to their reference. For exemple,
 
 ``` java
 String expected = "hello";

@@ -15,44 +15,56 @@ Include the improved test code in this file.
 
 ## Answer
 
-PS C:\Users\celia\Documents\ESIR\Cycle ingé\ESIR2\S7\VV\TP\VV-ESIR-TP3\pmd-documentation> pmd check -d ..\..\VV-ESIR-TP2\code\commons-collections\ -R category/java/bestpractices.xml/JUnitUseExpected -f text
-[WARN] Progressbar rendering conflicts with reporting to STDOUT. No progressbar will be shown. Try running with argument -r <file> to output the report to a file instead.
-[WARN] This analysis could be faster, please consider using Incremental Analysis: https://docs.pmd-code.org/pmd-doc-7.6.0/pmd_userdocs_incremental_analysis.html
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\collection\AbstractCollectionTest.java:828:    JUnitUseExpected:       In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\iterators\AbstractMapIteratorTest.java:141:    JUnitUseExpected:       In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:1495: JUnitUseExpected:       In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:1505: JUnitUseExpected:       In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:1639: JUnitUseExpected:       In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:1891: JUnitUseExpected:       In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:1902: JUnitUseExpected:       In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:2045: JUnitUseExpected:       In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:2064: JUnitUseExpected:       In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:2117: JUnitUseExpected:       In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:2138: JUnitUseExpected:       In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
+### Detected Test Smell
 
+After using PMD on the Commons Collections project with the rule `JUnitUseExpected` (thanks to the command `pmd check -d <path to commons-collections> -R category/java/bestpractices.xml/JUnitUseExpected -f text`), we can find several places where exception handling in JUnit tests was done manually through try-catch blocks rather than using `@Test(expected = Exception.class)`. This makes the code less readable and understandable. 
 
+You can find in the code/tp3-test-smells the full report. We chose to focus on one example observed in the `AbstractMapTest.java` file at line 1495.
 
-PS C:\Users\celia\Documents\ESIR\Cycle ingé\ESIR2\S7\VV\TP\VV-ESIR-TP3\pmd-documentation> pmd check -d ..\..\VV-ESIR-TP2\code\commons-collections\ -R category/java/errorprone.xml/DetachedTestCase -f text
-[WARN] Progressbar rendering conflicts with reporting to STDOUT. No progressbar will be shown. Try running with argument -r <file> to output the report to a file instead.
-[WARN] This analysis could be faster, please consider using Incremental Analysis: https://docs.pmd-code.org/pmd-doc-7.6.0/pmd_userdocs_incremental_analysis.html
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\IterableUtilsTest.java:71:     DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\IterableUtilsTest.java:78:     DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\bidimap\AbstractBidiMapTest.java:600:  DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\collection\AbstractCollectionTest.java:531:    DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\collection\AbstractCollectionTest.java:541:    DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\collection\AbstractCollectionTest.java:1363:   DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\functors\AbstractCompositePredicateTest.java:137:      DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\iterators\AbstractIteratorTest.java:182:       DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:943:  DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:952:  DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:2525: DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:2532: DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:2544: DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:2556: DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\map\AbstractMapTest.java:2571: DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\multimap\AbstractMultiValuedMapTest.java:671:  DetachedTestCase:       Probable detached JUnit test case.
-..\..\VV-ESIR-TP2\code\commons-collections\src\test\java\org\apache\commons\collections4\multimap\AbstractMultiValuedMapTest.java:679:  DetachedTestCase:       Probable detached JUnit test case.
+Here is the message received by PMD : 
 
+```
+In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
+```
 
+Here is the associated code :
 
-They test if you have the best practices
+```java
+try {
+    computeIfAbsent(keys[0], k -> newValues[0]);
+    fail("Expected IllegalArgumentException or UnsupportedOperationException on putIfAbsent (change)");
+} catch (final IllegalArgumentException | UnsupportedOperationException ex) {
+    // ignore
+}
+```
+
+In fact, this test manually handles the expected exceptions `IllegalArgumentException` and `UnsupportedOperationException`, by using a try-catch block.
+
+#### Possible Improvement
+
+The solution could be to refactor the test case by using `@Test(expected = Exception.class)`. It simplifies it and makes it more readable because it directly informs us that an exception is expected. So this test case is also more maintainable with this modification. 
+
+Here’s the improved version of the test case:
+
+```java
+@Test(expected = IllegalArgumentException.class)
+public void testMapComputeIfAbsentWithIllegalArgument() {
+    computeIfAbsent(keys[0], k -> newValues[0]);
+}
+```
+
+But to go further, we saw in the previous exercise that JUnit 5 thanks to `assertThrows` is better compared to `@Test` proposed in JUnit 4. Let us use it instead. It is more flexible because we can now separate the two exceptions to better identify the exception if it occurs. It gives something like that :
+
+``` java
+@Test
+public void testMapComputeIfAbsentWithExceptions() {
+    assertThrows(IllegalArgumentException.class, () -> {
+        computeIfAbsent(keys[0], k -> newValues[0]);
+    });
+    assertThrows(UnsupportedOperationException.class, () -> {
+        computeIfAbsent(keys[0], k -> newValues[0]);
+    });
+}
+```
+
+We can also add that it reduces the chance of false positives because the test is now more robust (by clearly specifying which exceptions are expected) in the measure where we are reducing test smells.
