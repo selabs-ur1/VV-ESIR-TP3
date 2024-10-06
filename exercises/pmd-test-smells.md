@@ -21,7 +21,7 @@ After using PMD on the Commons Collections project with the rule `JUnitUseExpect
 
 You can find in the code/tp3-test-smells the full report. We chose to focus on one example observed in the `AbstractMapTest.java` file at line 1495.
 
-Here is the message received by PMD : 
+Here is the message received from PMD : 
 
 ```
 In JUnit4, use the @Test(expected) annotation to denote tests that should throw exceptions
