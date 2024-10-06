@@ -30,7 +30,6 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 You can find in the ``code/tp3-balanced-strings/src/main/java/fr/istic/vv/StringUtils.java`` file the implementation of the method. To do it, we used a LIFO (Last In First Out) Structure as suggested in this [website](https://www.enjoyalgorithms.com/blog/check-for-balanced-parentheses-in-expression).
 
-
 ### 1. Input Space Partionning to design an Initial set of inputs
 
 When we refer to the [Textbook written by Oscar Luis Vera-Pérez](https://oscarlvp.github.io/vandv-classes/#_input_space_partitioning), we understand that Input space partitioning is a technique that divides the input domain into partitions based on specific characteristics to ensure that test inputs represent a wide range of possible values, including valid and invalid inputs.
@@ -41,10 +40,10 @@ In our case the key characteristics of the input domain could be :
 - the correctness of the grouping (only opening or closing strings, not balanced strings...)
 - the presence of non grouping characters (only grouping symbols, only non grouping symbols)
 
-We can define the partition block in a table.
+We can define the partition blocks in a table. (true if the expression is balanced, false otherwise)
 
-|          | String Length                                                     | Types of Grouping Symbols                           | Correctness of the grouping                     | Presence of non grouping characters                              |
+| Caracteristics | String Length| Types of Grouping Symbols| Correctness of the grouping| Non grouping characters                              |
 | -------- | ----------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------- |
-| Block 1  | Short : `` ``, ``(``, ``{}``, ``[)]``                             | One : ``{}``, ``()``, ``[[]``, ``{}{``              | Only opening : ``(``, ``({``, ``({[``, ``({([`` | Just them : ``abc``, ``123``, ``1a2b``, ``a4-5y``                |
-| Block 2  | Normal : ``(())``, ``[({}]``, ``{[()]}``                          | Two : ``()[]``, ``({})``, ``[{]}``, ``([)``         | Only closing : ``)``, ``)}``, ``)}]``, ``)})]`` | Not only just them : ``(a)bc``, ``a{bc}``, ``(a(bc``, ``a{b]c}`` |
-| Block 3  | Long : ``((()))()[]``, ``{[()()]}``, ``{[()(})]}``, ``{[[()()]}`` | Three : ``()[]{}``, ``[{()}]``, ``([})``, ``{[(])`` |                                                 |                                                                  |
+| Block 1  | Short :<br>`` `` : True<br>``(``: False<br>``{}`` : True<br>``[)]``: False| One :<br>``{}``: True<br>``()``: True<br>``[[]``: False<br>``{}{``: False              | Only opening :<br>``(``: False<br>``({``: False<br>``({[``: False<br>``({([``: False | Just them :<br>``abc`` : True<br>``123``: True<br>``1a2b`` : True<br>``a4-5y`` : True                |
+| Block 2  | Normal :<br>``(())`` : True<br>``{[()]}`` : True <br>``[({}]``: False<br>``{[[]}``: False                         | Two :<br>``()[]`` : True<br>``({})`` : True<br>``[{]}``: False<br>``([)``: False         | Only closing :<br>``)``: False<br>``)}``: False<br>``)}]``: False<br>``)})]``: False | Not only just them :<br>``(a)bc`` : True<br>``a{bc}`` : True<br>``(a(bc``: False<br>``a{b]c}``: False |
+| Block 3  | Long :<br>``((()))()[]`` : True<br>``{[()()]}`` : True<br>``{[()(})]}``: False<br>``{[[()()]}``: False | Three :<br>``()[]{}`` : True<br>``[{()}]`` : True<br>``([})``: False<br>``{[(])``: False |                                                 |                                                                  |
