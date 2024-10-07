@@ -53,6 +53,8 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+You can find the associated code in the code repository.
+
 Please note that for this exercise, we will not detail the answer as we processed the same method on the previous exercise.
 
 ### 1. Input Space Partionning to design an Initial set of inputs

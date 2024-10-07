@@ -40,3 +40,7 @@ Use the following steps to design the test suite:
 Use the project in [tp3-heap](../code/tp3-heap) to complete this exercise.
 
 ## Answer
+
+You can find the associated code in the code repository.
+
+Please note that for this exercise, we will not detail the answer as we processed the same method on the previous exercises.
