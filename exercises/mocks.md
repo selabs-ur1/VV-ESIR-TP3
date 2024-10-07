@@ -14,7 +14,9 @@ Propose a solution to this problem in your new Mockito-based test cases.
 
 You can find the solution in the code folder.
 
-The main issue with the base code is that if the setter is never called, it won't throw an error in this test
+The main issue with the base code is that the test will pass even if the setter (setEnabledProtocols) is never called. This is because the original test only verifies the parameters if the method is called, but does not ensure that the method itself is invoked at all.
+
+For example, in the test below:
 
 ```java
     @Test
@@ -39,6 +41,6 @@ The main issue with the base code is that if the setter is never called, it won'
     }
 ```
 
-That's why if we remove all the code in the prepareSocket method, the test run well.
+That is why if we completely remove the code inside the prepareSocket method, no test case will fail. That is a problem.
 
-My solution is to use the verify method provided by mockito, which will check if setEnabledProtocols is called, with the right parameters.
+To resolve this issue, I used Mockito's verify method. This ensures that setEnabledProtocols is actually called, and with the correct parameters. By doing this, we add a check to our test case : if the method is never invoked, the test will fail, which is what we want.
