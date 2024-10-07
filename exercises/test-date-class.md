@@ -108,6 +108,27 @@ Way better, but there is 2 method left, so it can be improved.
 
 Finally, a great coverage. There are still 3 mutants alive that could be killed during the test suite. But since we have over 80% of coverage, we can accept that it is enough.
 
+Then we changed a bit the code in the Date class :
+
+```java
+//old
+int maxPreviousMonth = getMaxMonth(getMonth() - 1, getYear());
+return new Date(maxPreviousMonth, getMonth() - 1, getYear());
+
+//new
+int month = getMonth() - 1;
+int maxPreviousMonth = getMaxMonth(month, getYear());
+return new Date(maxPreviousMonth, month, getYear());
+```
+
+It killed one mutant.
+
+And finally we added one test on the constructor just in order to test if we provide a wrong date, it throws an assertion.
+
+So by doing these little tweaks, we arrive with this final coverage.
+
+![img.png](img.png)
+
 ### 3. Verification of the _Base Choice Coverage_
 
 As we do not have a predicate that uses more than two boolean operators, we do not need to process this step.

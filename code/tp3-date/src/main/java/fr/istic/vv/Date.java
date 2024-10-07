@@ -79,8 +79,9 @@ class Date implements Comparable<Date> {
             return new Date(getDay() - 1, getMonth(), getYear());
         }
         else if (getMonth() > 0) {
-            int maxPreviousMonth = getMaxMonth(getMonth() - 1, getYear());
-            return new Date(maxPreviousMonth, getMonth() - 1, getYear());
+            int month = getMonth() - 1;
+            int maxPreviousMonth = getMaxMonth(month, getYear());
+            return new Date(maxPreviousMonth, month, getYear());
         } else if (getYear() == 1) {
             return new Date(31, 11, -1);
         }

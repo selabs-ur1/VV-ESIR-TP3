@@ -77,4 +77,5 @@ class DateTestPreviousAndNextDate {
         assertEquals(0, test_3_2.previousDate().compareTo(test_3_1));
         assertEquals(0, test_4_2.previousDate().compareTo(test_4_1));
     }
+
 }
