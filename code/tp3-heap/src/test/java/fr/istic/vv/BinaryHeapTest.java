@@ -17,7 +17,6 @@ class BinaryHeapTest {
     void setUp() {
         // Initialize the heap with a comparator for integers
         heap = new BinaryHeap<Integer>(Comparator.naturalOrder());
-
     }
 
     /* Push tests */
@@ -49,6 +48,22 @@ class BinaryHeapTest {
         int min = heap.pop();  
         assertEquals(5, min);  
         assertEquals(2, heap.count()); 
+    }
+
+    @DisplayName("Block X: Pop from a non-empty heap with all the same")
+    @Test
+    void popNonEmptyHeap2() {
+        heap.push(7);
+        heap.push(7);
+        heap.push(7);
+        heap.push(7);
+        heap.push(7);
+        heap.push(7);
+        assertEquals(6, heap.count());
+
+        int min = heap.pop();
+        assertEquals(7, min);
+        assertEquals(5, heap.count());
     }
 
     @DisplayName("Block 2: Pop from an empty heap (should throw NoSuchElementException)")
