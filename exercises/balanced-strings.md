@@ -30,6 +30,10 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 You can find in the ``code/tp3-balanced-strings/src/main/java/fr/istic/vv/StringUtils.java`` file the implementation of the method. To do it, we used a LIFO (Last In First Out) Structure as suggested in this [website](https://www.enjoyalgorithms.com/blog/check-for-balanced-parentheses-in-expression).
 
+Here is the control flow graph of our method to get an idea of its structure :
+
+![../img/control-flow-graph.png](../img/control-flow-graph.png)
+
 ### 1. Input Space Partionning to design an Initial set of inputs
 
 When we refer to the [Textbook written by Oscar Luis Vera-Pérez](https://oscarlvp.github.io/vandv-classes/#_input_space_partitioning), we understand that Input space partitioning is a technique that divides the input domain into partitions based on specific characteristics to ensure that test inputs represent a wide range of possible values, including valid and invalid inputs.
@@ -50,14 +54,181 @@ We can define the partition blocks in a table. (true if the expression is balanc
 
 ### 2. Statement Coverage
 
-Here is the control flow graph of our method :
+To evaluate the statement coverage of the test cases we designed in the previous step, we decided to use Jacoco.
 
-![../img/control-flow-graph.png](../img/control-flow-graph.png)
+To do it, we added in the pom.xml file of the project related to the balanced string these lines of codes in the plugin section.
+
+``` xml
+<!-- JaCoCo plugin for code coverage -->
+<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.10</version> <!-- Updated version -->
+    <executions>
+        <!-- Prepare JaCoCo agent for coverage data collection -->
+        <execution>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
+        <!-- Generate code coverage report -->
+        <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+After it, by executing the command ```mvn clean test``` in the project, we obtained this html file in the target/site/jacoco/index.html file that we opened on a browser.
+
+![../img/statement-coverage.png](../img/statement-coverage.png)
+
+Thanks to this report, we can see that we do not need to add new test cases to increase coverage. In fact, it shows that we have achieved 100% instruction coverage, 100% branch coverage, and 100% coverage of all methods and classes in the package. This indicates that all parts of the code have been executed during testing and there are no missed lines or branches.
 
 ### 3. Verification of the _Base Choice Coverage_
 
+In our code, we have a predicate that uses more than two boolean operators. It is this predicate :
+
+``` java
+if ((c == ')' && open != '(') || (c == ']' && open != '[') || (c == '}' && open != '{')) {
+    return false;
+}
+```
+
+As mentionned in the [Textbook written by Oscar Luis Vera-Pérez](https://oscarlvp.github.io/vandv-classes/#_input_space_partitioning), to achieve Base Choice Coverage for the boolean expression, we need to ensure that all possible outcomes (true and false) for each component of the boolean expression are covered by the test cases. All the possible outcomes at this step of the code are : 
+
+```
+Outcome 1:  c  = ')' AND open  = '(' 
+Outcome 2:  c  = ')' AND open != '('  
+Outcome 3:  c  = ']' AND open  = '['   
+Outcome 4:  c  = ']' AND open != '['  
+Outcome 5:  c  = '}' AND open  = '{'  
+Outcome 6:  c  = '}' AND open != '{'` 
+```
+
+When we look at our current test cases and we number it, here is what we observe :
+
+``` java
+package fr.istic.vv;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static fr.istic.vv.StringUtils.isBalanced;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class StringUtilsTest {
+    /*      String Length     */
+
+    @DisplayName("String Length : Short")
+    @Test
+    void isBalancedBlock1Length() {
+        assertTrue(isBalanced("")); // None of them
+        assertFalse(isBalanced("(")); // None of them
+        assertTrue(isBalanced("{}")); // Outcome 5
+        assertFalse(isBalanced("[)]"); // Outcome 3 -> 2
+    }
+
+    @DisplayName("String Length : Normal")
+    @Test
+    void isBalancedBlock2Length() {
+        assertTrue(isBalanced("(())")); // Outcome 1 -> 1
+        assertTrue(isBalanced("{[()]}")); // Outcome 1 -> 3 -> 5
+        assertFalse(isBalanced("[({}]"); // Outcome 5 -> 2
+        assertFalse(isBalanced("{[[]}")); // Outcome 3 -> 6
+    }
+
+    @DisplayName("String Length : Long")
+    @Test
+    void isBalancedBlock3Length() {
+        assertTrue(isBalanced("((()))()[]")); // Outcome 1 -> 1 -> 1 -> 1 -> 3 
+        assertTrue(isBalanced("{[()()]}")); // Outcome 1 -> 1 -> 3 -> 5
+        assertFalse(isBalanced("{[()(})]}"); // Outcome 1 -> 6
+        assertFalse(isBalanced("{[[()()]}"); // Outcome 1 -> 1 -> 3 -> 6
+    }
+
+    /*      Types of Grouping Symbols       */
+
+    @DisplayName("Types of Grouping Symbols : 1")
+    @Test
+    void isBalancedBlock1Types() {
+        assertTrue(isBalanced("{}")); // Outcome 5
+        assertTrue(isBalanced("()")); // Outcome 1
+        assertFalse(isBalanced("[[]"); // Outcome 4
+        assertFalse(isBalanced("{}{"); // Outcome 4
+    }
+
+    @DisplayName("Types of Grouping Symbols : 2")
+    @Test
+    void isBalancedBlock2Types() {
+        assertTrue(isBalanced("()[]")); // Outcome 1 -> 3
+        assertTrue(isBalanced("({})")); // Outcome 5 -> 1
+        assertFalse(isBalanced("[{]}"); // Outcome 6
+        assertFalse(isBalanced("([)"); // Outcome 2
+    }
+
+    @DisplayName("Types of Grouping Symbols : 3")
+    @Test
+    void isBalancedBlock3Types() {
+        assertTrue(isBalanced("()[]{}")); // Outcome 1 -> 3 -> 5
+        assertTrue(isBalanced("[{()}]")); // Outcome 1 -> 5 -> 3
+        assertFalse(isBalanced("([})"); // Outcome 2
+        assertFalse(isBalanced("{[(])"); // Outcome 4
+    }
+
+    /*      Correctness of the grouping       */
+
+    @DisplayName("Correctness of the grouping : Only opening")
+    @Test
+    void isBalancedBlock1Correctness() {
+        assertFalse(isBalanced("(")); // None of them
+        assertFalse(isBalanced("({")); // None of them
+        assertFalse(isBalanced("({[")); // None of them
+        assertFalse(isBalanced("({([")); // None of them
+    }
+
+    @DisplayName("Correctness of the grouping : Only closing")
+    @Test
+    void isBalancedBlock2Correctness() {
+        assertFalse(isBalanced(")")); // None of them
+        assertFalse(isBalanced(")}")); // None of them
+        assertFalse(isBalanced(")}]")); // None of them
+        assertFalse(isBalanced(")})]")); // None of them
+    }
+
+    /*      Non grouping characters       */
+
+    @DisplayName("Non grouping characters : Just them")
+    @Test
+    void isBalancedBlock1Characters() {
+        assertTrue(isBalanced("abc")); // None of them
+        assertTrue(isBalanced("123")); // None of them
+        assertTrue(isBalanced("1a2b")); // None of them
+        assertTrue(isBalanced("a4-5y")); // None of them
+    }
+
+    @DisplayName("Non grouping characters : Not only just them")
+    @Test
+    void isBalancedBlock2Characters() {
+        assertTrue(isBalanced("(a)bc")); // Outcome 1
+        assertTrue(isBalanced("a{bc}")); // Outcome 5
+        assertFalse(isBalanced("(a(bc")); // None of them
+        assertFalse(isBalanced("a{b]c}")); // Outcome 4
+    }
+}
+```
+
+With this analysis, we can observe that all outcomes are encontered at least one time. So, we satisfy the Base Choice Coverage. We do not need to add new test cases.
+
 ### 4. Verifaction of our test suite with PiTest
+
+By using PIT to evaluate our test suite, we obtain the following result:
 
 ![../img/PIT-result_balanced-string.png](../img/PIT-result_balanced-string.png)
 
-The results speak for themselves. The test suite is solid. As we can see, all the mutants were killed during the tests. The only problem we can find is that we have one line not covered out of twelve.
+The results speak for themselves. The test suite is solid. As we can see, all the mutants were killed during the tests. The only problem we can find is that we have one line not covered out of twelve. So we can consider that we do not need to add new test cases or refactor the existing ones to achieve a higher mutation score.

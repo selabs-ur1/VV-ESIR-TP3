@@ -53,7 +53,9 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
-### 1 .
+Please note that for this exercise, we will not detail the answer as we processed the same method on the previous exercise.
+
+### 1. Input Space Partionning to design an Initial set of inputs
 
 Values for the isValidDate method.
 
@@ -63,23 +65,25 @@ Values for the isValidDate method.
 | month | < 0 // error |              | 0 January, 2 March,4 Mai,6 July,7 August,9 October,11 December | 3 April, 5 June, 8 September, 10 November | 1 February | > 12 // error |
 | day   | < 0 // error | = 0 // error | Between 1 and the max of the month                             | Superior of the max of the month          |            |               |
 
-By implementing those tests, we have this score.
+### 2. Statement Coverage
+
+By implementing those tests and analyze them with PITest, we obtain this score.
+
 ![../img/img_1.png](../img/img_1.png)
 
 It is not a lot, but we can improve it by testing other methods.
 
-
-Values for the isLeapYear method.
+- Values for the isLeapYear method.
 
 |       | B1    | B2    | B3  | B4    | 
 |-------|-------|-------|-----|-------|
-| year  | / 400 | / 100 | / 4 | other |                                                                                                                                                               |
+| year  | / 400 | / 100 | / 4 | other |                                                                                                                                                                
 
 ![../img/img_2.png](../img/img_2.png)
 
 We improved the result, but not by a lot. This is normal as there is not a lot of cases.
 
-Values for the compareTo method.
+- Values for the compareTo method.
 
 |       | B1                         | B2                         | B3           | B4        | 
 |-------|----------------------------|----------------------------|--------------|-----------|
@@ -91,7 +95,7 @@ Values for the compareTo method.
 
 Way better, but there is 2 method left, so it can be improved.
 
-Values for the previousDate And nextDate methods. (it is the same but reversed)
+- Values for the previousDate and nextDate methods (it is the same but reversed)
 
 |              | B1                           | B2                           | B3                          | B4                            | 
 |--------------|------------------------------|------------------------------|-----------------------------|-------------------------------|
@@ -101,3 +105,11 @@ Values for the previousDate And nextDate methods. (it is the same but reversed)
 ![../img/img_4.png](../img/img_4.png)
 
 Finally, a great coverage. There are still 3 mutants alive that could be killed during the test suite. But since we have over 80% of coverage, we can accept that it is enough.
+
+### 3. Verification of the _Base Choice Coverage_
+
+As we do not have a predicate that uses more than two boolean operators, we do not need to process this step.
+
+### 4. Verifaction of our test suite with PiTest
+
+See below our displayed results on the step 2.
