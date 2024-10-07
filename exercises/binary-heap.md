@@ -44,3 +44,17 @@ Use the project in [tp3-heap](../code/tp3-heap) to complete this exercise.
 You can find the associated code in the code repository.
 
 Please note that for this exercise, we will not detail the answer as we processed the same method on the previous exercises.
+
+### 1. Input Space Partionning to design an Initial set of inputs
+
+Here are the categories of inputs according to each method:
+
+| | Push | Pop | Peek | Count |
+|-|-|-|-|-|
+|Block 1| Non-null elements | Non-empty heap | Non-empty heap | After pushing one or more elements
+|Block 2| Null elements | Empty heap | Empty heap | After popping one or more elements
+|Block 3| | | | Empty heap
+
+### 2. Statement Coverage
+
+By implementing those tests and analyze them with PITest, we obtain this score.
