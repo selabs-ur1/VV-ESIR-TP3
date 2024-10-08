@@ -15,3 +15,22 @@ Include the improved test code in this file.
 
 ## Answer
 
+src/test/java/org/apache/commons/collections4/collection/AbstractCollectionTest.java:541:	DetachedTestCase:	Probable detached JUnit test case.
+
+Il n'y a pas de précision concernant le type de test (@Test and @Ignore)
+
+Code: 
+
+public void resetFull() {
+    this.setCollection(makeFullCollection());
+    this.setConfirmed(makeConfirmedFullCollection());
+}
+
+Ameliorations:
+
+@BeforeEach
+public void resetFull() {
+    this.setCollection(makeFullCollection());
+    this.setConfirmed(makeConfirmedFullCollection());
+}
+
