@@ -127,7 +127,7 @@ And finally we added one test on the constructor just in order to test if we pro
 
 So by doing these little tweaks, we arrive with this final coverage.
 
-![img.png](img.png)
+![../img/img.png](../img/img.png)
 
 ### 3. Verification of the _Base Choice Coverage_
 
