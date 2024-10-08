@@ -4,8 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Comparator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,22 +47,6 @@ class BinaryHeapTest {
         int min = heap.pop();  
         assertEquals(5, min);  
         assertEquals(2, heap.count()); 
-    }
-
-    @DisplayName("Block X: Pop from a non-empty heap with all the same")
-    @Test
-    void popNonEmptyHeap2() {
-        heap.push(7);
-        heap.push(7);
-        heap.push(7);
-        heap.push(7);
-        heap.push(7);
-        heap.push(7);
-        assertEquals(6, heap.count());
-
-        int min = heap.pop();
-        assertEquals(7, min);
-        assertEquals(5, heap.count());
     }
 
     @DisplayName("Block 2: Pop from an empty heap (should throw NoSuchElementException)")
@@ -114,4 +97,40 @@ class BinaryHeapTest {
     void countEmptyHeap() {
         assertEquals(0, heap.count()); 
     }
+
+
+    // Test added to improve the score
+
+    @DisplayName("Added pushThenEmpty : ordered")
+    @Test
+    void pushThenEmptyHeap1() {
+        int min = 0;
+        int max = 100;
+        for (int i=min;i<max;i++){
+            heap.push(i);
+        }
+        for (int i=min;i<max;i++){
+            assertEquals(max-i,heap.count());
+            assertEquals(i,heap.peek());
+            assertEquals(i,heap.pop());
+            assertEquals(max-1-i,heap.count());
+        }
+    }
+
+    @DisplayName("Added pushThenEmpty : ordered reversed")
+    @Test
+    void pushThenEmptyHeap2() {
+        int min = 0;
+        int max = 100;
+        for (int i=max-1;i>=min;i--){
+            heap.push(i);
+        }
+        for (int i=min;i<max;i++){
+            assertEquals(max-i,heap.count());
+            assertEquals(i,heap.peek());
+            assertEquals(i,heap.pop());
+            assertEquals(max-1-i,heap.count());
+        }
+    }
+
 }

@@ -58,3 +58,31 @@ Here are the categories of inputs according to each method:
 ### 2. Statement Coverage
 
 By implementing those tests and analyze them with PITest, we obtain this score.
+
+![img_1.png](img_1.png)
+
+Not so great.
+
+Then we thought about emptying all the heap.
+
+To try, we will create two tests, each with a heap:
+- with ordered numbers
+- created with ordered numbers in reverse
+
+![img.png](img.png)
+
+Way better, doesn't it?
+
+When we look at the four others mutants left, we see they are related to "a conditional boundary changed"
+```
+line 53 : comparator.compare(heap.get(rightChildIndex), heap.get(leftChildIndex)) < 0
+
+line 58 :  comparator.compare(heap.get(index), heap.get(smallestChildIndex)) <= 0
+
+line 107 : index > 0
+line 107 : comparator.compare(heap.get(index), heap.get(parentIndex)) < 0
+```
+
+For each of these case, it is impossible to detect any conditional boundary change because this will not impact the result.
+The only thing that it will do is swap two equal values or go few iterations further.
+This will maybe impact the complexity, but never the result.

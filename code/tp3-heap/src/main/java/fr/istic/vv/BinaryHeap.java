@@ -33,9 +33,12 @@ class BinaryHeap<T> {
         
         // Retrieve the minimum element, which is always at the root
         T min = heap.get(0);
-        
+
         // Replace the root with the last element in the heap and remove the last element
-        heap.set(0, heap.remove(heap.size() - 1));
+        T last = heap.remove(heap.size() - 1);
+        if (!heap.isEmpty()){
+            heap.set(0,last);
+        }
 
         int index = 0;
         int leftChildIndex = 1;
