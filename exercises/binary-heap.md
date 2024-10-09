@@ -40,3 +40,47 @@ Use the following steps to design the test suite:
 Use the project in [tp3-heap](../code/tp3-heap) to complete this exercise.
 
 ## Answer
+
+You can find the associated code in the code repository.
+
+Please note that for this exercise, we will not detail the answer as we processed the same method on the previous exercises.
+
+### 1. Input Space Partionning to design an Initial set of inputs
+
+Here are the categories of inputs according to each method:
+
+| | Push | Pop | Peek | Count |
+|-|-|-|-|-|
+|Block 1| Non-null elements | Non-empty heap | Non-empty heap | After pushing one or more elements
+|Block 2| Null elements | Empty heap | Empty heap | After popping one or more elements
+|Block 3| | | | Empty heap
+
+### 2. Statement Coverage
+
+By implementing those tests and analyze them with PITest, we obtain this score.
+
+![img_1.png](img_1.png)
+
+Not that great...
+
+Then we thought about emptying all the heap. To try it, we will create two tests, each with a heap:
+- with ordered numbers
+- created with ordered numbers in reverse
+
+![img.png](img.png)
+
+Way better, isn't it?
+
+When we look at the four others mutants left, we see they are related to "a conditional boundary changed"
+```
+line 53 : comparator.compare(heap.get(rightChildIndex), heap.get(leftChildIndex)) < 0
+
+line 58 :  comparator.compare(heap.get(index), heap.get(smallestChildIndex)) <= 0
+
+line 107 : index > 0
+line 107 : comparator.compare(heap.get(index), heap.get(parentIndex)) < 0
+```
+
+For each of these case, it is impossible to detect any conditional boundary change because this will not impact the result.
+The only thing that it will do is swap two equal values or go few iterations further.
+This will maybe impact the complexity, but never the result.
