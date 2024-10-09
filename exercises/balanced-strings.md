@@ -36,7 +36,7 @@ Here is the control flow graph of our method to get an idea of its structure :
 
 ### 1. Input Space Partionning to design an Initial set of inputs
 
-When we refer to the [Textbook written by Oscar Luis Vera-Pérez](https://oscarlvp.github.io/vandv-classes/#_input_space_partitioning), we understand that Input space partitioning is a technique that divides the input domain into partitions based on specific characteristics to ensure that test inputs represent a wide range of possible values, including valid and invalid inputs.
+When we refer to the [Textbook written by Oscar Luis Vera-Pérez](https://oscarlvp.github.io/vandv-classes/#_input_space_partitioning), we understood that Input space partitioning is a technique that divides the input domain into partitions based on specific characteristics to ensure that test inputs represent a wide range of possible values, including valid and invalid inputs.
 
 In our case the key characteristics of the input domain could be :
 - the length of the string (short : less than 3, normal : between 4 and 10, long : mre than 10)
@@ -83,7 +83,7 @@ To do it, we added in the pom.xml file of the project related to the balanced st
 </plugin>
 ```
 
-After it, by executing the command ```mvn clean test``` in the project, we obtained this html file in the target/site/jacoco/index.html file that we opened on a browser.
+After it, by executing the command ```mvn clean test``` in the project, we obtained this html file in the ``target/site/jacoco/index.html`` file that we opened on a browser.
 
 ![../img/statement-coverage.png](../img/statement-coverage.png)
 

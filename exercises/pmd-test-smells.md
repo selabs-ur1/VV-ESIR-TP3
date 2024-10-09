@@ -19,7 +19,7 @@ Include the improved test code in this file.
 
 After using PMD on the Commons Collections project with the rule `JUnitUseExpected` (thanks to the command `pmd check -d <path to commons-collections> -R category/java/bestpractices.xml/JUnitUseExpected -f text`), we can find several places where exception handling in JUnit tests was done manually through try-catch blocks rather than using `@Test(expected = Exception.class)`. This makes the code less readable and understandable. 
 
-You can find in the code/tp3-test-smells the full report. We chose to focus on one example observed in the `AbstractMapTest.java` file at line 1495.
+You can find in the ``code/tp3-test-smells`` the full report. We chose to focus on one example observed in the `AbstractMapTest.java` file at line 1495.
 
 Here is the message received from PMD : 
 

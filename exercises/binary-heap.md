@@ -61,17 +61,15 @@ By implementing those tests and analyze them with PITest, we obtain this score.
 
 ![img_1.png](img_1.png)
 
-Not so great.
+Not that great...
 
-Then we thought about emptying all the heap.
-
-To try, we will create two tests, each with a heap:
+Then we thought about emptying all the heap. To try it, we will create two tests, each with a heap:
 - with ordered numbers
 - created with ordered numbers in reverse
 
 ![img.png](img.png)
 
-Way better, doesn't it?
+Way better, isn't it?
 
 When we look at the four others mutants left, we see they are related to "a conditional boundary changed"
 ```
